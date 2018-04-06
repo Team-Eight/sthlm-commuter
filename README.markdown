@@ -1,6 +1,6 @@
 ![Logo for STHLM Traveling for Android](http://markupartist.com/sthlmtraveling/logo.png)
 
-STHLM Traveling
+STHLM Traveling - Soon to be changed!
 ===============
 
 Travel in Stockholm with your Android phone. STHLM Traveling helps you plan your journeys using data from Stockholm Public Transport (SL, Stockholms Lokaltrafik).
