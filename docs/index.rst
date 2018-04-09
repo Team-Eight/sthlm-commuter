@@ -8,10 +8,7 @@ Welcome to Stockholm Commute's documentation!
 
 .. toctree::
    :maxdepth: 2
-   
-Index
-============================================= 
-   
+
    about
    file
  
