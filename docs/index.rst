@@ -8,7 +8,10 @@ Welcome to Stockholm Commute's documentation!
 
 .. toctree::
    :maxdepth: 2
-     
+   
+Index
+============================================= 
+   
    about
    file
  
@@ -16,9 +19,7 @@ Welcome to Stockholm Commute's documentation!
     
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
+.. * :ref:`genindex`
+.. * :ref:`search`
 .. * :ref:`modindex`
-* :ref:`search`
