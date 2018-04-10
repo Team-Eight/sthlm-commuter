@@ -3,7 +3,7 @@
 
 ## File Structure
 
-* data/models/RealTimeState.java
+* data/models/RealTimeState.java <br/>
 Endast en enum med olika states, 
     BEHIND_SCHEDULE,
     AHEAD_OF_SCHEDULE,
@@ -11,4 +11,3 @@ Endast en enum med olika states,
     NOT_SET,
 
 
-*
