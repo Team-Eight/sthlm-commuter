@@ -9,6 +9,18 @@ JourneyQueryParameter.java
   *** 
 **  models/TravelMode.java
 
+### TravelMode.java
+Skapar ett travelmode-objekt som korresponderar till en sträng som är något av färdsätten
+
+### TransportMode.java
+
+
+### LegUtil.java
+The functions transportModesToTravelModes and travelModesToTransportModes converts a list of transportMode objects to a list of travelMode objects and vice versa.  
+
+
+### JourneyQuery.java
+The function Uri toUri(boolean withTime) converts a list with transportModes objects to a list with travelMode objects through the transportModesToTravelModes function. A new travelModeQuery object is created based on the converted list of travelMode objects. 
 
 
 ## File Structure
