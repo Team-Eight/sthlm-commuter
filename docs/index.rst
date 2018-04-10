@@ -12,7 +12,7 @@ Welcome to Stockholm Commute's documentation!
    about
    TravelMode
    Realtid
-   Contributing
+   FAQ
  
 
     
