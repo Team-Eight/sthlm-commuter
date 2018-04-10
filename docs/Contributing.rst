@@ -14,15 +14,13 @@ Adding To The Wiki
 The documentation is hosted and can be viewed here on ReadTheDocs,
 while the source files are located on the `GitHub Repository <https://github.com/Team-Eight/sthlm-commuter/tree/gh-pages/docs/>`_.
 
-* Editing
-
-  To edit the current page, simply click the "Edit on GitHub" - found at the top of the page,
-  or head over to the `GitHub Repository <https://github.com/Team-Eight/sthlm-commuter/tree/gh-pages/docs/>`_ to see all files.
-
-
-* Adding a new page
-
-  In order to add a new page you need to do three things,
+| * Editing
+|
+|   To edit the current page, simply click the "Edit on GitHub" - found at the top of the page, or head over to the `GitHub Repository <https://github.com/Team-Eight/sthlm-commuter/tree/gh-pages/docs/>`_ to see all files.
+|
+| * Adding a new page
+|
+|  In order to add a new page you need to do three things,
 
   1. Decide whether you would like to use the **reStrucutredText** or the **Markdown** syntax.
 
