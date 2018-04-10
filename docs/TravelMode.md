@@ -1,5 +1,15 @@
 # Travel Mode
 
+Router -> LegUtil.transportModesToTravelModes -> TravelMode.TravelMode -> TravelModeQuery
+
+JourneyQueryParameter.java
+
+* api/TravelModeQuery.java
+  ** TravelModeQuery.fromStringList
+  *** 
+**  models/TravelMode.java
+
+
 
 ## File Structure
 
