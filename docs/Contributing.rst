@@ -22,14 +22,14 @@ while the source files are located on the `GitHub Repository <https://github.com
 |
 |  In order to add a new page you need to do three things,
 
-  1. Decide whether you would like to use the **reStrucutredText** or the **Markdown** syntax.
+  1. Decide whether you would like to use the **reStructuredText** or the **Markdown** syntax.
 
-    - `reStrucutredText <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_ has some more functionality but might be more complex.
+    - `reStructuredText <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_ has some more functionality but might be more complex.
     - `Markdown <https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet>`_ is easier and the same syntax as GitHub uses for it's '.md' - files.
 
   2. Create a file on GitHub
 
-    - `GitHub Repository <https://github.com/Team-Eight/sthlm-commuter/tree/gh-pages/docs/>`_ with either the '.md' - for Markdown or '.rst' for reStrucutredText.
+    - `GitHub Repository <https://github.com/Team-Eight/sthlm-commuter/tree/gh-pages/docs/>`_ with either the '.md' - for Markdown or '.rst' for reStructuredText.
 
   3. Add the name of the file to the index
 
