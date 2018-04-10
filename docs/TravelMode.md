@@ -1,9 +1,7 @@
-##########
-Travel Mode
-##########
+# Travel Mode
 
 
-**File structure**
+## File Structure
 
 * models/TravelMode.java
 * api/TravelModeQuery.java
