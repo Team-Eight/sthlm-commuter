@@ -4,7 +4,8 @@ Travel Mode
 
 
 **File structure**
-#. models/TravelMode.java
+
+* models/TravelMode.java
 * api/TravelModeQuery.java
 * planner/JourneyQuery.java
 * api/ApiService.java
