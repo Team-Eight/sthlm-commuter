@@ -2,12 +2,6 @@
 
 Router -> LegUtil.transportModesToTravelModes -> TravelMode.TravelMode -> TravelModeQuery
 
-JourneyQueryParameter.java
-
-* api/TravelModeQuery.java
-  ** TravelModeQuery.fromStringList
-  *** 
-**  models/TravelMode.java
 
 ### TravelMode.java
 Create a travelMode object tha corresponds to a string that describes the different travel modes. 
@@ -20,7 +14,11 @@ The functions transportModesToTravelModes and travelModesToTransportModes conver
 ### JourneyQuery.java
 The function Uri toUri(boolean withTime) converts a list with transportModes objects to a list with travelMode objects through the transportModesToTravelModes function. A new travelModeQuery object is created based on the converted list of travelMode objects. 
 
-The function then use the buildUpon() method (Constructs a new builder, copying the attributes from this Uri) and contructs at new builder upon the routesUri. Then "travelMode='travelmodeValue'"
+The function then use the buildUpon() method (Constructs a new builder, copying the attributes from this Uri) and contructs at new builder upon the routesUri. then "travelMode='travelmodeValue'" is added to the uri.
+
+
+In the Builder uriV2(Uri uri) function a TravelModeQuery object from the decode uri which contains the chosen travel mode. 
+
 
 ## File Structure
 
