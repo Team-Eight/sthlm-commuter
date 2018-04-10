@@ -15,7 +15,7 @@ Here's some basic information regarding the structure of an App, the different c
 App components
 --------------
 Android apps consists of multiple components that
-can be invoked individually, each components serves as an
+can be invoked individually, each component serves as an
 entry point from which the system/user can enter the app.
 
 There are four different types of components:
