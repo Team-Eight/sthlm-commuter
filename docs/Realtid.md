@@ -15,19 +15,37 @@ Endast en enum med olika states, används av GUI för att välja t.ex. rätt iko
 
 <br/>
 
-* Plan:     Vald resa from -> to
+* Plan: Vald resa from -> to
 ```
 
 ```
-* Route:    Olika förslag på rutter med olika tider för att resa enligt planen
+* Route: Olika förslag på rutter med olika tider för att resa enligt planen,  Ex: buss 88 + buss 23 + tåg 4
 ```
 
 ```
-* Leg:      Leg = delresa, Varje Route har flera Legs, t.ex. buss 844 -> buss 323
+* Leg: Leg = delresa, Varje Route har flera Legs, t.ex. en tur med buss 88
 ```
+Vars
+boolean realtime        sätts av backend om realtimeinfo finns tillgängligt
+<br />
+
+Functs
+
+<br/>
 
 ```
 * IntermediateStop: En hållplats på en Leg, t.ex. Grönlandsgången
 ```
+Vars
+start/end -time         tabelltiden
+start/end -timeRt       Realtid (provided by backend)
+<br/>
+
+Functs
+Set och gets för Realtid 
+Booleans om det är delay på departure/arrival från hållplatsen
+<br/>
+
+
 
 ```
