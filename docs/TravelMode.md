@@ -10,18 +10,17 @@ JourneyQueryParameter.java
 **  models/TravelMode.java
 
 ### TravelMode.java
-Skapar ett travelmode-objekt som korresponderar till en sträng som är något av färdsätten
+Create a travelMode object tha corresponds to a string that describes the different travel modes. 
 
 ### TransportMode.java
-
 
 ### LegUtil.java
 The functions transportModesToTravelModes and travelModesToTransportModes converts a list of transportMode objects to a list of travelMode objects and vice versa.  
 
-
 ### JourneyQuery.java
 The function Uri toUri(boolean withTime) converts a list with transportModes objects to a list with travelMode objects through the transportModesToTravelModes function. A new travelModeQuery object is created based on the converted list of travelMode objects. 
 
+The function then use the buildUpon() method (Constructs a new builder, copying the attributes from this Uri) and contructs at new builder upon the routesUri. Then "travelMode='travelmodeValue'"
 
 ## File Structure
 
