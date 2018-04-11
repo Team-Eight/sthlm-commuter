@@ -37,7 +37,7 @@ Checks if the user have filtered travel modes.
 `
 public JSONObject toJson(boolean all) throws JSONException
 `
- 
+Creates a JSON object with an array based upon the list of travel modes decided by the user (*transportModes*) to send information to backend. **Only used when saving favorite routes**
 
 
 ### onSearchRoutes
