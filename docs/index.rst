@@ -13,6 +13,7 @@ Welcome to Stockholm Commute's documentation!
    TravelMode
    SearchFunction
    Realtid
+   Objects
    FAQ
  
 
