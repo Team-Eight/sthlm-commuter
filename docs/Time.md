@@ -17,9 +17,27 @@ To create a Date object from a human-date and time:
     //timeString format is "HH:mm"
 ```
 ## How to change departure/arrival time
+Logic is inside the ChangeRouteTimeActivity.java class
 
-```
-protected Dialog onCreateDialog(int id)
+The app uses dialog-windows which are activated by the date and time button to adjust the depart and arrival time.
+After the date and time dialog windows close the information is sent to the listener and the time/date is changed accordingly using the following function. 
+
+```    
+//Row 315 in 
+//To change the date modify year, monthOfYear and dayOfMonth variables
+ private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() 
+calendar.set(Calendar.YEAR, year);
+calendar.set(Calendar.MONTH, monthOfYear);
+calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+//Row 330
+//To change the time modify hourOfDay and minute variables
+ private TimePickerDialog.OnTimeSetListener mTimeSetListener =
+            new TimePickerDialog.OnTimeSetListener()
+            
+calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+calendar.set(Calendar.MINUTE, minute);
 ```
 
 ## Real-Time
