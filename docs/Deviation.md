@@ -1,5 +1,3 @@
-# Deviation 
-
 ![alt text](./DeviationDocumentation.png)
 
 # Deviation
@@ -30,8 +28,8 @@ public ArrayList<Deviation> getDeviations(final Context context)
 ## DeviationsActivity
 ![alt text](./DeviationActivity.PNG)
 
-  # getDeviationTask
-  Använder sig av deviationstore, som getTrafficStatus, men skillnaden är att getDeviationTask visar mer noggrann info under "show all" in deviations.
+  ### getDeviationTask
+  Uses 'deviationStore', just like getTrafficStatus does, but the difference is that getTrafficStatus shows more detailed information about specific deviations under the tab 'show all'.
   
 ```
  private void fillData(ArrayList<Deviation> result) 
