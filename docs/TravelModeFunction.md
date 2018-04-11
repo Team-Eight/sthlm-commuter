@@ -62,7 +62,8 @@ public void planTransit(final JourneyQuery journeyQuery, final Callback callback
 A list of TravelMode object is created from the JourneyQuery object's transportModes arraylist. A new TravelModeQuery object is created from the list. The *apiService.getPlan* function is called with the TravelModeQuery as a parameter. The travel mode setting are sent to the backend and then forwarded to the SL API. 
 
  
-
+### create 
+Creates a JourneyQuery object from a JSON object from favourites.
 
 ## File Structure
 
