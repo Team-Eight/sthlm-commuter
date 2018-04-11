@@ -27,7 +27,17 @@ The functions *transportModesToTravelModes* and *travelModesToTransportModes* co
 The *getTransportDrawable* function looks at the travelmode of the leg (led.getTravelMode) and supplies an icon accordingly. 
 
 ### JourneyQuery
-From a parcel object a JourneyQuery object is created. The object consist of, amongst other things, a ArrayList of strings called *transportModes*. 
+From a parcel object a JourneyQuery object is created. The object consist of, amongst other things, a ArrayList of strings called *transportModes*. *transportModes* consists of user decided travel modes accessed from backend.
+**This is where user input is accessed**
+
+### hasAdditionalFiltering
+Checks if the user have filtered travel modes. 
+
+### toJson 
+`
+public JSONObject toJson(boolean all) throws JSONException
+`
+ 
 
 
 ### onSearchRoutes
@@ -49,7 +59,7 @@ In the function *Leg*, travel modes decided by the user is assigned to the varia
 ```
 public void planTransit(final JourneyQuery journeyQuery, final Callback callback, final String ident, final @Nullable String dir)
 ```
-A list of TravelMode object is created from the JourneyQuery object's transportModes arraylist. A new TravelModeQuery object is created from the list. The *apiService.getPlan* function is called with the TravelModeQuery as a parameter. The travel mode setting are sent to the backend and then forwarded to the API. 
+A list of TravelMode object is created from the JourneyQuery object's transportModes arraylist. A new TravelModeQuery object is created from the list. The *apiService.getPlan* function is called with the TravelModeQuery as a parameter. The travel mode setting are sent to the backend and then forwarded to the SL API. 
 
  
 
