@@ -1,8 +1,7 @@
 
 # Search Function
-.. code-block:: java
 
-- Documenation of the general functionality of how the program searches for transportation routes and displays them to the user.
+- Documentation on the general functionality of searching for transportation routes and how the result is displayed to the user.
 ## Entrypoint
 
 ```
