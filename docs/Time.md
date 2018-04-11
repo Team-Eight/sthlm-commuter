@@ -15,14 +15,16 @@ To create a Date object from a human-date and time:
     
     //dataString format is "yyyy-MM-dd"
     //timeString format is "HH:mm"
-
+```
 ## How to change departure/arrival time
 
 ```
 protected Dialog onCreateDialog(int id)
 ```
 
-## Real-Time* data/models/RealTimeState.java <br/>
+## Real-Time
+
+data/models/RealTimeState.java <br/>
 Endast en enum med olika states, används av GUI för att välja t.ex. rätt ikoner/stryka fel tid etc 
 ```
     BEHIND_SCHEDULE,
