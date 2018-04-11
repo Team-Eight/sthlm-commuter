@@ -2,4 +2,19 @@
 
 ![alt text](./DeviationDocumentation.png)
 
-Hej
+# Deviation
+
+## trafficStatusFragment
+Sidan för störningar skapas direkt när appen öppnas genom denna klass.
+
+## getTrafficStatus
+
+## deviationStore
+
+## getDevTask
+
+## fillData
+
+## deviationActivity
+
+## deviationStore
