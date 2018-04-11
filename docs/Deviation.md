@@ -23,10 +23,12 @@ public ArrayList<Deviation> getDeviations(final Context context)
 ```
 
 
-## fillData
-
-## deviationActivity
+## deviationsActivity
 ![alt text](./DeviationActivity.PNG)
   ## getDeviationTask
   Använder sig av deviationstore, som getTrafficStatus, men skillnaden är att getDeviationTask visar mer noggrann info under "show all" in deviations.
   
+```
+ private void fillData(ArrayList<Deviation> result) 
+```
+  This function transforms the deviation data and allows for it to be printed on the display.
