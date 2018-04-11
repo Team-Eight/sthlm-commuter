@@ -93,6 +93,6 @@ The program then callsback to refresh the routes on the GUI using the showroutes
 
 
 
-##Callback
+## Callback
 Class A calls Class B to get some work done in a Thread. If the Thread finished the work, it will inform Class A over the callback and provide the results. So there is no need for polling or something. You will get the results as soon as they are available.
 In Android Callbacks are used f.e. between Activities and Fragments. Because Fragments should be modular you can define a callback in the Fragment to call methods in the Activity.
