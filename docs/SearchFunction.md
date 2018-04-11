@@ -98,3 +98,26 @@ The program then callsback to refresh the routes on the GUI using the showroutes
 ## Callback
 Class A calls Class B to get some work done in a Thread. If the Thread finished the work, it will inform Class A over the callback and provide the results. So there is no need for polling or something. You will get the results as soon as they are available.
 In Android Callbacks are used f.e. between Activities and Fragments. Because Fragments should be modular you can define a callback in the Fragment to call methods in the Activity.
+
+## HowTo- Manual Search
+
+Inside PlannerFragment.java 
+ -> Inside function:  onSearchRoutes(Site startPoint, Site endPoint) 
+Row 430
+```
+mStartPoint = new Site();
+mStartPoint.setLocation(59.40, 17.95);
+mStartPoint.setName("My Location");
+
+mEndPoint = new Site();
+mEndPoint.setLocation(59.33, 18.06);
+mEndPoint.setName("My Location");
+
+JourneyQuery journeyQuery = createJourneyQuery(startPoint, endPoint);
+
+journeyQuery.toUri(true);
+
+Intent routesIntent = new Intent(getActivity(), RoutesActivity.class);
+routesIntent.putExtra(RoutesActivity.EXTRA_JOURNEY_QUERY, journeyQuery);
+startActivity(routesIntent);
+```
