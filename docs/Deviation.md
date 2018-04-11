@@ -4,12 +4,13 @@
 
 # Deviation
 
-## trafficStatusFragment
-                                                                  ![alt text](./TrafficStatusFragment.PNG)
+```## trafficStatusFragment
+![alt text](./TrafficStatusFragment.PNG)
+
 Sidan för störningar skapas direkt när appen öppnas genom denna klass.
 
-## getTrafficStatus
-
+getTrafficStatus är en metod i trafficStatusFragment som kommunicerar med deviationStore, där störningar hämtas in från SL.
+```
 ## deviationStore
 
 ## getDevTask
@@ -17,5 +18,6 @@ Sidan för störningar skapas direkt när appen öppnas genom denna klass.
 ## fillData
 
 ## deviationActivity
+![alt text](./DeviationActivity.PNG)
 
 ## deviationStore
