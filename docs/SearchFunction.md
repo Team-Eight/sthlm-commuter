@@ -6,7 +6,7 @@
 
 data/models/RealTimeState.java <br/>
 
-Search function Documentation
+##Search function Documentation
 
 Documenation of the general functionality of how the program searches for transportation routes and displays them to the user aswell as the general description of 
 
