@@ -2,12 +2,7 @@
 # Search Function
 
 
-## Hmm
-
-data/models/RealTimeState.java <br/>
-
-##Search function Documentation
-## Hmmasd
+## Search function Documentation
 
 Documenation of the general functionality of how the program searches for transportation routes and displays them to the user aswell as the general description of 
 
@@ -17,7 +12,6 @@ PlannerFragment
 
 private void handleSearchAction() {
 ```
-###sad
 The handleSearchAction function inside of the PlannerFragment class checks if the user has entered information into startpoint textbox if that is not the case, the app will suggest autocomplete options for that textbox. The application then goes on to perform the same check on the endpoint textbox. When the users has entered information into both textboxes the program creates two sites out of the startpoint and endpoint by calling buildStop.
 
 ```
@@ -49,7 +43,7 @@ private void initRoutes(JourneyQuery journeyQuery)
 
 InitRoutes first calls fetchTransitRoute and afterwards fetchAlternativeRoutes.
 
-##Fetch transit routes
+## Fetch transit routes
 ```
 void fetchTransitRoute(JourneyQuery journeyQuery)
 ```
@@ -72,7 +66,7 @@ public void refill(List<Route> trips)
 Called with callback when data received from backend: displays the routes using the RoutesAdapter internal class. GUI-stuff
 
 
-#Alternative routes (foot, bike, car)
+## Alternative routes (foot, bike, car)
 ```
 void fetchRouteAlternatives(JourneyQuery journeyQuery)
 ```
@@ -94,7 +88,7 @@ The program then callsback to refresh the routes on the GUI using the showroutes
 
 
 
-##Callback
+## Callback
 Class A calls Class B to get some work done in a Thread. If the Thread finished the work, it will inform Class A over the callback and provide the results. So there is no need for polling or something. You will get the results as soon as they are available.
 In Android Callbacks are used f.e. between Activities and Fragments. Because Fragments should be modular you can define a callback in the Fragment to call methods in the Activity.
 
@@ -106,7 +100,7 @@ In Android Callbacks are used f.e. between Activities and Fragments. Because Fra
 
 
 
-##JourneyQuery
+## JourneyQuery
 
 public class JourneyQuery implements Parcelable {
    public Site origin;
