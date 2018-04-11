@@ -3,10 +3,23 @@
 Router -> LegUtil.transportModesToTravelModes -> TravelMode.TravelMode -> TravelModeQuery
 
 
-### TravelMode.java
-Create a travelMode object tha corresponds to a string that describes the different travel modes. 
+### TravelMode
+Creates a travelMode object that consists of a string that describes the different travel modes. 
 
-### TransportMode.java
+Constructor, used by: *LegUtil.transportModesToTravelModes* & *TravelModeQuery.fromStringList*
+
+```
+public TravelMode(String mode)
+```
+
+Returns mode, used by: *LegUtil.travelModesToTransportModes*
+
+```
+public String getMode()
+```
+
+### TransportMode
+Contains strings corresponding to the different travel modes(probably according to the APIs own naming conventions). Also contains index variables for each of the travel modes, the purpose of which is still unknown. A *getIndex* function also exists which returns the index of the corresponding travel mode. 
 
 ### LegUtil.java
 The functions *transportModesToTravelModes* and *travelModesToTransportModes* converts a list of transportMode objects to a list of travelMode objects and vice versa.  
