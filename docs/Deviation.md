@@ -5,16 +5,20 @@
 # Deviation
 
 ## trafficStatusFragment
-![alt text](./TrafficStatusFragment.PNG)
 
 The page for deviations is created upon app launch, through this class
 
-getTrafficStatus is a method in trafficStatusFragment which communicates with deviationStore, where deviations are collected through SL's API. This info is general deviations, such as "Buses will replace trains from April to May on line 19"
+![alt text](./TrafficStatusFragment.PNG)
+
+getTrafficStatus is a method in deviationStore which is called upon by the private class GetTrafficStatusTask. The method returns a type called 'TrafficStatus' which gives a "rating" for the current deviations affecting each way of transportation. It also provides the user with info about the devication cause. 
 
 ```
 private class GetTrafficStatusTask
+```
+```
 public TrafficStatus getTrafficStatus(final Context context) 
 ```
+
 ## deviationStore
 Kommunicerar med SLs API för störningar i trafiken för att organiserea och hämta störningar just nu. Sparar störningar som typen "deviation" i en ArrayList genom getDeviations, som sedan returnerar listan.
 
