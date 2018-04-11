@@ -13,7 +13,6 @@ Welcome to Stockholm Commute's documentation!
    TravelModeFunction
    SearchFunction
    Time
-   Realtid
    Objects
    Deviation
    FAQ
