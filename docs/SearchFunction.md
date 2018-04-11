@@ -4,7 +4,7 @@
 
 ## Hmm
 
-* data/models/RealTimeState.java <br/>
+data/models/RealTimeState.java <br/>
 
 Search function Documentation
 
@@ -12,7 +12,7 @@ Documenation of the general functionality of how the program searches for transp
 
 
 ```
-PlannerFragment
+###PlannerFragment
 
 private void handleSearchAction() {
 ```
