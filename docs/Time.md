@@ -21,7 +21,6 @@ To create a Date object from a human-date and time:
 ```
 protected Dialog onCreateDialog(int id)
 ```
-```
 
 ## Real-Time* data/models/RealTimeState.java <br/>
 Endast en enum med olika states, används av GUI för att välja t.ex. rätt ikoner/stryka fel tid etc 
