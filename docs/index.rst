@@ -10,7 +10,7 @@ Welcome to Stockholm Commute's documentation!
    :maxdepth: 2
 
    about
-   TravelMode
+   TravelModeFunction
    SearchFunction
    Realtid
    Objects
