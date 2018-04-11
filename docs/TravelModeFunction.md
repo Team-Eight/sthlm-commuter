@@ -18,8 +18,15 @@ Returns mode, used by: *LegUtil.travelModesToTransportModes*
 public String getMode()
 ```
 
+### TravelModeQuery
+Creates a TravelModeQuery object that consist of a list with travelModes and adds modes to the list. 
+
+#### fromStringList
+Takes a string containing several travel modes, parses the string and creates a new TravelModeQuery object(list of TravelMode objects).  
+
 ### TransportMode
 Contains strings corresponding to the different travel modes(probably according to the APIs own naming conventions). Also contains index variables for each of the travel modes, the purpose of which is still unknown. A *getIndex* function also exists which returns the index of the corresponding travel mode. 
+
 
 ### LegUtil.java
 The functions *transportModesToTravelModes* and *travelModesToTransportModes* converts a list of transportMode objects to a list of travelMode objects and vice versa.  
