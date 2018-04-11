@@ -11,10 +11,9 @@ Use DateTimeUtils class to work with it.
 Useful functions
 To create a Date object from a human-date and time:
 ```
-    public static Date fromDateTime(final String dateString, final String timeString)
+    public static Date fromDateTime(final String dateString)
     
-    //dataString format is "yyyy-MM-dd"
-    //timeString format is "HH:mm"
+    //dataString format is "yyyy-MM-ddTHH:mm"
 ```
 ## How to change departure/arrival time
 Logic is inside the ChangeRouteTimeActivity.java class
