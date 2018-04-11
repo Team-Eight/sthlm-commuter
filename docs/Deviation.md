@@ -5,7 +5,7 @@
 # Deviation
 
 ## trafficStatusFragment
-![alt text](./TrafficStatusFragment.png)
+![alt text](./TrafficStatusFragment.PNG)
 Sidan för störningar skapas direkt när appen öppnas genom denna klass.
 
 ## getTrafficStatus
