@@ -53,40 +53,25 @@ Endast en enum med olika states, används av GUI för att välja t.ex. rätt iko
     NOT_SET,
 ```
 
-
+Real-time information is received from the backend automatically and is contained within the Leg class<br/>
+The Leg class has a variety of functions to handle realtime
 <br/>
-
-Plan.java: Vald resa from -> to
-```
-
-```
-Route.java: Olika förslag på rutter med olika tider för att resa enligt planen,  Ex: buss 88 + buss 23 + tåg 4
-```
-
-```
-Leg.java: Leg = delresa, Varje Route har flera Legs, t.ex. en tur med buss 88
-```
-Vars
-boolean realtime        sätts av backend om realtimeinfo finns tillgängligt
-<br />
-
-Functs
-
+Ex<br/>
+start/end -time         tabelltiden<br/>
+start/end -timeRt       Realtid <br/>
 <br/>
+<br/>
+There is a thread running in the RoutesActivity.java:193 that checks if any of the legs of the routes in the plan need to be updated (with the shouldRefresh function in Plan) <br/>
+If it turns out that any of the legs need to be updated the plan is adjusted to compensate for the real-time change
 
 ```
-IntermediateStop.java: En hållplats på en Leg, t.ex. Grönlandsgången
+ //a thread is constantly running following function
+    public boolean shouldRefresh(long timeMillis)
+    
+ //which returns true if realtime and then the thread calls 
+    public void refreshTransit(final JourneyQuery journeyQuery, final Callback callback)
+    
 ```
-Vars
-start/end -time         tabelltiden
-start/end -timeRt       Realtid (provided by backend)
-<br/>
-
-
-Functs
-Set och gets för Realtid
-Booleans för att kolla om det är delay på departure/arrival från hållplatsen
-<br/>
 
 
 ## Real-Time GUI usages
