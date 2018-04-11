@@ -26,10 +26,8 @@ The functions *transportModesToTravelModes* and *travelModesToTransportModes* co
 
 The *getTransportDrawable* function looks at the travelmode of the leg (led.getTravelMode) and supplies an icon accordingly. 
 
-### JourneyQuery.java
-The function Uri toUri(boolean withTime) converts a list with transportModes objects to a list with travelMode objects through the transportModesToTravelModes function. A new travelModeQuery object is created based on the converted list of travelMode objects. 
-
-The function then use the buildUpon() method (Constructs a new builder, copying the attributes from this Uri) and contructs at new builder upon the routesUri. then "travelMode='travelmodeValue'" is added to the uri. The uri is passed to the PlannerFragment.java file.
+### JourneyQuery
+From a parcel object a JourneyQuery object is created. The object consist of, amongst other things, a ArrayList of strings called *transportModes*. 
 
 
 ### onSearchRoutes
@@ -44,7 +42,14 @@ The function creates a new *android.content.Intent* object called *routesIntent*
 The function saves the URI in a variable called *routesUri*. A new *android.content.Intent* object is then created based upon *routesUri*. An *android.content.Intent* object is an abstract description of an operation to be performed. It can be used with startActivity to launch an Activity. In this specific case the activity is to view the information specified by the URI. 
 
 ### Leg.java
-In the function *Leg* travel mode decided by the user is assigned to the variable *travelMode* 
+In the function *Leg*, travel modes decided by the user is assigned to the variable *travelMode*.
+
+
+### planTransit
+```
+public void planTransit(final JourneyQuery journeyQuery, final Callback callback, final String ident, final @Nullable String dir)
+```
+A list of TravelMode object is created from the JourneyQuery object's transportModes arraylist. A new TravelModeQuery object is created from the list. The *apiService.getPlan* function is called with the TravelModeQuery as a parameter. The travel mode setting are sent to the backend and then forwarded to the API. 
 
  
 
