@@ -12,11 +12,11 @@ Documenation of the general functionality of how the program searches for transp
 
 
 ```
-###PlannerFragment
+PlannerFragment
 
 private void handleSearchAction() {
 ```
-
+###sad
 The handleSearchAction function inside of the PlannerFragment class checks if the user has entered information into startpoint textbox if that is not the case, the app will suggest autocomplete options for that textbox. The application then goes on to perform the same check on the endpoint textbox. When the users has entered information into both textboxes the program creates two sites out of the startpoint and endpoint by calling buildStop.
 
 ```
