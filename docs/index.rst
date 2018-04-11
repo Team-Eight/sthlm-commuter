@@ -11,6 +11,7 @@ Welcome to Stockholm Commute's documentation!
 
    about
    TravelMode
+   SearchFunction
    Realtid
    FAQ
  
