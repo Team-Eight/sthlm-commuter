@@ -1,6 +1,6 @@
 # Time
 
-## Documentation on how to do Time-related things
+* Documentation on how to do Time-related things
 
 ## Date
 Represented as number of milliseconds since the standard base time known as the Epoch (1970, 1 jan, 00:00:00 GMT)
