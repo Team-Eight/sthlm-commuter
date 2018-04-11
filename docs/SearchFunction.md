@@ -1,24 +1,18 @@
 
 # Search Function
 
-
-## Hmm
-
-data/models/RealTimeState.java <br/>
-
-Search function Documentation
-
-Documenation of the general functionality of how the program searches for transportation routes and displays them to the user.
-
+- Documenation of the general functionality of how the program searches for transportation routes and displays them to the user.
+## Entrypoint
 
 ```
 PlannerFragment
 
 private void handleSearchAction() {
 ```
-###sad
+## handleSearchAction
 The handleSearchAction function inside of the PlannerFragment class checks if the user has entered information into startpoint textbox if that is not the case, the app will suggest autocomplete options for that textbox. The application then goes on to perform the same check on the endpoint textbox. When the users has entered information into both textboxes the program creates two sites out of the startpoint and endpoint by calling buildStop.
 
+## buildStop
 ```
 private Site buildStop(Site site, TextView textView)
 ```
@@ -26,11 +20,14 @@ private Site buildStop(Site site, TextView textView)
 
 The buildStop function then checks to see what type of information the user has entered into the textbox it then converts that information into a useable site object and returns it.
 
+## onSearchRoutes
 ```
 private void onSearchRoutes(Site startPoint, Site endPoint) 
 ```
 
 The onSearchRoutes function is then called with the startpoint site and endpoint site as parameters and this function then builds a journeyQuery based on the information provided and describes an intent to be used with the JourneyQuery in order to start the RouteActivity. 
+
+## routesActivity
 
 ```
 public class RoutesActivity extends BaseListActivity implements
@@ -41,6 +38,7 @@ The program then enters the RoutesActivity and the onCreate method is called, th
 
 onResume() will always be called when the activity goes into foreground, but it will never be executed before onCreate() 
 
+## initRoutes
 
 ```
 private void initRoutes(JourneyQuery journeyQuery)
@@ -48,19 +46,21 @@ private void initRoutes(JourneyQuery journeyQuery)
 
 InitRoutes first calls fetchTransitRoute and afterwards fetchAlternativeRoutes.
 
-##Fetch transit routes
+## FetchTransitRoutes
 ```
 void fetchTransitRoute(JourneyQuery journeyQuery)
 ```
 
 fetchTransitRoute fetches routes available from public transport by calling planTransit using the mRouter object.
 
+## PlanTransit
 ```
 public void planTransit(final JourneyQuery journeyQuery, final Callback callback)
 ```
 
 planTransit contacts the sthlm-traveler backend using a journeyQuery to get the available public transport routes.
 
+## updateTransitRoutes
 
 ```
 public void updateTransitRoutes(Plan plan)
@@ -71,26 +71,28 @@ public void refill(List<Route> trips)
 Called with callback when data received from backend: displays the routes using the RoutesAdapter internal class. GUI-stuff
 
 
-#Alternative routes (foot, bike, car)
+
+## Alternativeroutes (foot, bike, car)
 ```
 void fetchRouteAlternatives(JourneyQuery journeyQuery)
 ```
 
 fetchRouteAlternatives fetches routes available by foot/bike/car by calling plan in Router.java.
 
+## Plan
 ```
 public void plan(final JourneyQuery journeyQuery, final Callback callback)
 ```
 
 plan contacts the sthlm-traveler backend using the journeyQuery which produces the routes.
 
+## updateRouteAlternatives
 ```
 public void updateRouteAlternatives(Plan plan)
 ```
 
 updateRouteAlternatives displays the plan retrieved from backend. GUI-stuff
 The program then callsback to refresh the routes on the GUI using the showroutes() method.
-
 
 
 ## Callback
