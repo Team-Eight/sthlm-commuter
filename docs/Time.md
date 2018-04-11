@@ -27,9 +27,9 @@ To change the date modify year, monthOfYear and dayOfMonth variables
 ```   
  private DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() 
-calendar.set(Calendar.YEAR, year);
-calendar.set(Calendar.MONTH, monthOfYear);
-calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+    calendar.set(Calendar.YEAR, year);
+    calendar.set(Calendar.MONTH, monthOfYear);
+    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 ```   
 
 Row 330
@@ -38,8 +38,8 @@ To change the time modify hourOfDay and minute variables
  private TimePickerDialog.OnTimeSetListener mTimeSetListener =
             new TimePickerDialog.OnTimeSetListener()
             
-calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-calendar.set(Calendar.MINUTE, minute);
+    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+    calendar.set(Calendar.MINUTE, minute);
 ```
 
 ## Real-Time
@@ -82,10 +82,18 @@ start/end -time         tabelltiden
 start/end -timeRt       Realtid (provided by backend)
 <br/>
 
+
 Functs
 Set och gets för Realtid
 Booleans för att kolla om det är delay på departure/arrival från hållplatsen
 <br/>
 
 
+## Real-Time GUI usages
+
+Text color on departure times changes depending on realTimeState<br/>
+ViewHelper.java row 303
+```
+    public static @ColorRes int getTextColorByRealtimeState(RealTimeState realTimeState)
+```
 
