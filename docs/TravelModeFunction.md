@@ -1,4 +1,4 @@
-# Travel Mode
+# Travel Mode Function
 
 Router -> LegUtil.transportModesToTravelModes -> TravelMode.TravelMode -> TravelModeQuery
 
