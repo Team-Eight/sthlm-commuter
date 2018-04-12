@@ -42,8 +42,9 @@ Are you a member?
    SearchFunction
    FavoritesandJourneyHistory
    Time
-   History
+   activities
    Objects
+   Via
    Deviation
    Location
    FAQ

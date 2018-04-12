@@ -54,25 +54,30 @@ The function saves the URI in a variable called *routesUri*. A new *android.cont
 ### Leg.java
 In the function *Leg*, travel modes decided by the user is assigned to the variable *travelMode*.
 
+### Route
 
 ### planTransit
 ```
 public void planTransit(final JourneyQuery journeyQuery, final Callback callback, final String ident, final @Nullable String dir)
 ```
-A list of TravelMode object is created from the JourneyQuery object's transportModes arraylist. A new TravelModeQuery object is created from the list. The *apiService.getPlan* function is called with the TravelModeQuery as a parameter. The travel mode setting are sent to the backend and then forwarded to the SL API. 
+A travel plan is requested from the sthlmTraveling back end with a TravelModeQuery as a parameter. 
 
- 
+
+### fetchTransitRoute 
+the function calls the planTransit function through the mRouter object. 
+
 ### create 
-Creates a JourneyQuery object from a JSON object from favourites.
+Creates a JourneyQuery object from a JSON object. Only concerns favourites.
 
-## File Structure
+## Files concerned 
 
-* models/TravelMode.java
+
 * api/TravelModeQuery.java
-* planner/JourneyQuery.java
 * api/ApiService.java
+* models/TravelMode.java
 * models/Leg.java
 * models/Route.java (?)
+* planner/JourneyQuery.java
 * routing/Router.java 
 * site/PlacesProvider.java
 * site/TransportMode.java

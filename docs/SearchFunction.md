@@ -99,6 +99,56 @@ The program then callsback to refresh the routes on the GUI using the showroutes
 Class A calls Class B to get some work done in a Thread. If the Thread finished the work, it will inform Class A over the callback and provide the results. So there is no need for polling or something. You will get the results as soon as they are available.
 In Android Callbacks are used f.e. between Activities and Fragments. Because Fragments should be modular you can define a callback in the Fragment to call methods in the Activity.
 
+## Reverse
+While at the Search page there are two different reverses, one which is located in the PlannerFragment AKA frontpage of search, and one which is located in the RoutesActivity AKA second searchpage.
+
+This is the first reverse button/function which is located in the PlannerFragment AKA Frontpage of search. The button is R.id.reverse_start_end
+```
+public class PlannerFragment{
+    public void initViews() {
+       public void onClick(View v) {
+                Site newStart = new Site(mEndPoint);
+                Site newEnd = new Site(mStartPoint);
+
+                mStartPoint = newStart;
+                mEndPoint = newEnd;
+
+                if (mStartPoint.isMyLocation()) {
+                    mStartPointAutoComplete.setText(getText(R.string.my_location));
+                } else {
+                    mStartPointAutoComplete.setText(mStartPoint.getName());
+                }
+
+                if (mEndPoint.isMyLocation()) {
+                    mEndPointAutoComplete.setText(getText(R.string.my_location));
+                } else {
+                    mEndPointAutoComplete.setText(mEndPoint.getName());
+                }
+            }
+          
+```
+
+The second reverse is the more complex of the two, yet still very simple. When the button with given ID (R.id.actionbar_item_reverse) is pressed it updates the JourneyQuery / transit via the function shown below.
+
+```
+public class RoutesActivity
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionbar_item_reverse:
+                reverseJourneyQuery();
+
+    protected void reverseJourneyQuery() {
+        Site tmpStartPoint = new Site(mJourneyQuery.destination);
+        Site tmpEndPoint = new Site(mJourneyQuery.origin);
+
+        mJourneyQuery.origin = tmpStartPoint;
+        mJourneyQuery.destination = tmpEndPoint;
+
+        fetchTransitRoute(mJourneyQuery);
+        updateStartAndEndPointViews(mJourneyQuery);
+    }
+```
+
 ## HowTo- Manual Search
 
 Inside PlannerFragment.java 
