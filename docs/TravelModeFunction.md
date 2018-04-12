@@ -1,5 +1,20 @@
 # Travel Mode Function
 
+### ChangeRouteTimeActivity
+
+### getSelectedTransportModes
+Check the checkbox status and updates data accordingly. Creates a list of TransportMode objects and returns it, based upon checked boxes. 
+
+### onClick 
+Checks if "done" has been pressed. If it has the function getSelectedTransportModes is called and the JourneyQuery object is updated with selected transport modes. 
+
+Creates an intent with the JourneyQuery object as a parameter and the instruction EXTRA_Journey_Query. 
+
+
+<br>
+
+
+
 ### TravelMode
 Creates a travelMode object that consists of a string that describes the different travel modes. 
 
