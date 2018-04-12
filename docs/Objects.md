@@ -56,5 +56,5 @@ Consists of a list with TravelMode objects
 
 ![alt text](./img/journeyquery-contents.PNG) <br/>
 
-Journeyqueries hold information needed to ask the STHLM-travel API for available routes.
+Journeyqueries hold information that will be parced to the STHLM-travel API to produce a list of available routes.
 Essentially the Journeyquery is a request, "I want to go from here to here at a certain time". Journeyqueries are what is used to produce plan objects.
