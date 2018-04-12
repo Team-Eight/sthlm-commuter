@@ -7,6 +7,7 @@ The plan object consists of: <br/>
 - A list of routes <br/>
 - A long describing how many miliseconds ago it was updated <br/>
 - A list of routeError objects. <br/>
+
 The plan object is used to list the available routes from one location to another. <br/>
 
 ## Route
@@ -16,6 +17,7 @@ The route object consists of: <br/>
 - A list of leg objects <br/>
 - A string "mode" describing the different traveling modes <br/>
 - A boolean "Fare" describing if ticket purchases can be made for this trip <br/>
+
 The route is used to describe how the different trips look, e.g. how long it takes, if it goes by boat or train etc... <br/>
 
 ## Leg
