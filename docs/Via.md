@@ -15,7 +15,8 @@ In here, a Site is created, mViaPoint. This is the final Site that is used to ch
 private Site mViaPoint = new Site();
 ```
 
-In the method createAutoCompleteTextView, we send a request to an API with the user input String, fetching SL-stops or addresses.
+When the user starts typing we go into the method createAutoCompleteTextView, where a request to an API is sent, which matches the user input String. With the AutoCompleteTextView-solution we don't have to 'confirm' our search, the list of stops instead updates "on the fly" as we type.
+
 This shows a drop down menu of available results. 
 
 Read about it here: https://developer.android.com/reference/android/widget/AutoCompleteTextView.html
