@@ -102,22 +102,21 @@ In Android Callbacks are used f.e. between Activities and Fragments. Because Fra
 ## HowTo- Manual Search
 
 Inside PlannerFragment.java 
- -> Inside function:  onSearchRoutes(Site startPoint, Site endPoint) 
-Row 430
+ -> Inside function:  handleSearchAction()
+ <br/>
+ Change the following code to search from hardcoded coordinates
+ <br/>
+Row 581
 ```
-mStartPoint = new Site();
-mStartPoint.setLocation(59.40, 17.95);
-mStartPoint.setName("My Location");
+            //new code
+            //mStartPoint = buildStop(mStartPoint, mStartPointAutoComplete);
+           // mEndPoint = buildStop(mEndPoint, mEndPointAutoComplete);
+            mStartPoint = new Site();
+            mStartPoint.setLocation(59.43, 17.95);
+            mStartPoint.setName("Katt");
 
-mEndPoint = new Site();
-mEndPoint.setLocation(59.33, 18.06);
-mEndPoint.setName("My Location");
-
-JourneyQuery journeyQuery = createJourneyQuery(startPoint, endPoint);
-
-journeyQuery.toUri(true);
-
-Intent routesIntent = new Intent(getActivity(), RoutesActivity.class);
-routesIntent.putExtra(RoutesActivity.EXTRA_JOURNEY_QUERY, journeyQuery);
-startActivity(routesIntent);
+            mEndPoint = new Site();
+            mEndPoint.setLocation(59.35, 17.95);
+            mEndPoint.setName("Moo");
+            //new code
 ```
