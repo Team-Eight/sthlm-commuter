@@ -46,6 +46,7 @@ Are you a member?
    Objects
    Via
    Deviation
+   History
    Location
    Notifications
    FAQ
