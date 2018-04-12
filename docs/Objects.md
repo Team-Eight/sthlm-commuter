@@ -58,17 +58,3 @@ Consists of a list with TravelMode objects
 
 Journeyqueries are used to store information that is going to be used to ask the STHLM-travel API for available routes.
 Essentially the Journeyquery is a request, "I want to go from here to here at a certain time". Journeyqueries are what lead to plan objects.
-
-Consists of:  
-    - A site "origin"
-    - A site "destination"
-    - A site "via"
-    - A date "time"
-    - A boolean "isTimeDeparture"
-    - A boolean "alternativeStops" 
-    - A List of Strings "transportModes"
-    - A String "ident"
-    - A boolean "hasPromotions"
-    - An int "promotionNetwork"
-    - A String "previousIdent"
-    - A string "previousDir"
