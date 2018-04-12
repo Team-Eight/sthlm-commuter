@@ -1,17 +1,31 @@
 =======
 History
 =======
-
 The following sections have the basic functionality of the *history* activity described,
 and some of the noteworthy classes & functions that are involved.
 
-**The History function only saves the origin Site, making it available for searching departures from that location.**
+**There are several places within the app that relate to history. The following sections just describe the general functionality and notes some activities that invoke activites related to history.**
+
+### The General Scenario
+If you've made a search, both the starting location and the destination are saved into the history view,
+enabling you to use either of them as a **departure** location in a new search.
+
+History is also utilized when you're making a new search, and your recent locations are listed.
+
+setupHistoryViews
+-----------------
+This function is triggered when you click either the departure/destination location field in order to search for a location and populates a list with some of your recently used/searched locations. 
+
+HistoryAdapter
+--------------
+This class handles populating the *history view* with recent departure sites i.e the departure location in a recent search.
 
 
 History Database
 ----------------
 Handled via: *historyDbAdapter*
 
+The above mentioned functions, and any related functions to loading history utilizes this class.
 The database handles the persistent storing of history items, and saves the following keys:
 
 +-----------+----------------+----------------------+
