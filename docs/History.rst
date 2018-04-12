@@ -6,7 +6,8 @@ and some of the noteworthy classes & functions that are involved.
 
 **There are several places within the app that relate to history. The following sections just describe the general functionality and notes some activities that invoke activites related to history.**
 
-### The General Scenario
+The General Scenario
+--------------------
 If you've made a search, both the starting location and the destination are saved into the history view,
 enabling you to use either of them as a **departure** location in a new search.
 
