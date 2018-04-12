@@ -53,15 +53,22 @@ Consists of a string corresponding to a travel mode (ie. bus, train etc.)
 ## TravelModeQuery
 Consists of a list with TravelMode objects
 ## JourneyQuery 
-Consists of public Site origin;
-    Site destination;
-    Site via;
-    Date time;
-    boolean isTimeDeparture = true;
-    boolean alternativeStops = false;
-    List<String> transportModes = new ArrayList<>();
-    String ident;
-    boolean hasPromotions;
-    nt promotionNetwork = -1; 
-    String previousIdent;
-    String previousDir;
+
+![alt text](./img/journeyquery-contents.PNG) <br/>
+
+Journeyqueries are used to store information that is going to be used to ask the STHLM-travel API for available routes.
+Essentially the Journeyquery is a request, "I want to go from here to here at a certain time". Journeyqueries are what lead to plan objects.
+
+Consists of:  
+    - A site "origin"
+    - A site "destination"
+    - A site "via"
+    - A date "time"
+    - A boolean "isTimeDeparture"
+    - A boolean "alternativeStops" 
+    - A List of Strings "transportModes"
+    - A String "ident"
+    - A boolean "hasPromotions"
+    - An int "promotionNetwork"
+    - A String "previousIdent"
+    - A string "previousDir"
