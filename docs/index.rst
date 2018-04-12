@@ -14,6 +14,7 @@ Welcome to Stockholm Commute's documentation!
    SearchFunction
    FavoritesandJourneyHistory
    Time
+   activities
    Objects
    Via
    Deviation
