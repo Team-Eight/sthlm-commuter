@@ -12,7 +12,7 @@ Welcome to Stockholm Commute's documentation!
    about
    TravelModeFunction
    SearchFunction
-   Favorites and journey history
+   FavoritesandJourneyHistory
    Time
    Objects
    Deviation
