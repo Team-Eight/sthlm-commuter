@@ -3,7 +3,7 @@ When using my location in the search function the app never initRoutes but inste
 
 The app doesn't store any location data inside the Site (orgin or destination) if My Location has been selected but instead this is handled using the LocationManager in real-time.<br/><br/>
 
-A LocationManager object is created in onCreate in RoutesActivity.java which listens to Location changes. <br/>
+A LocationManager object is created in onCreate in RoutesActivity.java:167-171 (using googleApi) which listens to Location changes. <br/>
 LocationManager has an interface...
 ```
     void onMyLocationFound(Location location);
