@@ -27,7 +27,7 @@ For example if a user needs to take a bus and a train afterwards this would resu
 
 ## IntermediateStop
 ![alt text](./img/intermediate_stop.png) <br/>
-The intermediate stop is used during trips if the user will have to switch between two legs and wait for a period inbetween.
+The intermediate stop is used during trips if the route requires the user to switch between two legs and wait for a period inbetween.
 The intermediate stop object consists of: <br/>
 - A location describing in GPS coordinates where the stop is <br/>
 - A starttime stating when the stop "starts"
