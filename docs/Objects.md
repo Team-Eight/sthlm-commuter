@@ -56,5 +56,5 @@ Consists of a list with TravelMode objects
 
 ![alt text](./img/journeyquery-contents.PNG) <br/>
 
-Journeyqueries are used to store information that is going to be used to ask the STHLM-travel API for available routes.
-Essentially the Journeyquery is a request, "I want to go from here to here at a certain time". Journeyqueries are what lead to plan objects.
+Journeyqueries hold information needed to ask the STHLM-travel API for available routes.
+Essentially the Journeyquery is a request, "I want to go from here to here at a certain time". Journeyqueries are what is used to produce plan objects.
