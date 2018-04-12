@@ -9,11 +9,11 @@ The journey_data column contains JSON data about the journey. Example:
 
 ## PlannerFragment
 ![alt text](./plannerfragment.png)
-The five latest journeys are displayed here, in order of most recently modified. Non-starred journeys outside of the 5 most recent are deleted.
+The five latest journeys are displayed here, in order of most recently modified. Non-starred journeys outside of the 5 most recent are deleted, but even starred journeys are not preferentially displayed or sorted here.
 inflateView
 
-
-
 ## RoutesActivity
+![alt text](./routesactivity.png)
 
 ## FavoritesFragment
+![alt text](./favoritesfragment.png)
