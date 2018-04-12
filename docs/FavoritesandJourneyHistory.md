@@ -1,6 +1,6 @@
 # Journeys
 All favorites (starred journeys) begin as journey entries in the journeys table in journeys.db. This database file is primarily handled by JourneysProvider.
-Journeys are starred or unstarred by toggling the star icons in the PlannerFragment view or the RoutesActivity view. (code line 730
+Journeys are starred or unstarred by toggling the star icons in the PlannerFragment view or the RoutesActivity view.
 All starred journeys are loaded and displayed in the FavoritesFragment view.
 The class FavoritesDbAdapter and corresponding database favorite.db seem to only exist for backwards compatibility and are not used.
 ![alt text](./Journeys.png)
