@@ -19,6 +19,8 @@ When the user starts typing we go into the method createAutoCompleteTextView, wh
 
 This shows a drop down menu of available results. 
 
+![alt text](./img/Sökning.PNG)
+
 Read about it here: https://developer.android.com/reference/android/widget/AutoCompleteTextView.html
 
 It is quite unclear how this goes from a selected Site in the dropdown menu to our Site object, mViaPoint.
