@@ -2,6 +2,7 @@
 
 
 ## Plan
+The plan object contains
 ## Route
 ## Leg
 ## IntermediateStop
