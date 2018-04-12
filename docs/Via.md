@@ -6,10 +6,11 @@ Here, the user may type in anything he or she likes. The app will then try to ma
 ## ChangeRouteTimeActivity
 
 Basically the whole via-idea is handled in this class, ChangeRouteTimeActivity. 
+![alt text](./ChangeRouteTimeActivity.PNG)
 
-As the user inputs the String into the app, the function 
+In here, a Site is created, mViaPoint. This is the final Site that is used to change the journeyquery.
 
-This is done through the class ChangeRouteTimeActivity, where a Site, mViaPoint is created. This ends up as our 'via'-Site.
+![alt text](./ViaPoint.PNG)
 
 In the method createAutoCompleteTextView, we send a request to an API with the user input String, fetching SL-stops or addresses.
 This shows a drop down menu of available results. 
