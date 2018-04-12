@@ -14,5 +14,9 @@ But the logic for this function is found inside RoutesActivity.java:570
 ```
     @Override
     public void onMyLocationFound(Location location)
+    {
+        	//Logic
+            //the location variable contains My Location in coordinates
+    }
 ```
 Here the routes are initatied when location found and updated if my location changes
