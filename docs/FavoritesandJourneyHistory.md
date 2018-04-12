@@ -1,5 +1,5 @@
 # Favorites and Journey history
-All favorites (starred journeys) begin as journey entries in the journeys table in journeys.db. This database file is primarily handled by JourneysProvider.  
+All favorites (starred journeys) are entries in the journeys table in journeys.db whose "starred" column is set to 1. This database file is primarily handled by JourneysProvider. The same file stores recent journeys.
 Journeys are starred or unstarred by toggling the star icons in the PlannerFragment view or the RoutesActivity view.
 All starred journeys are loaded and displayed in the FavoritesFragment view.  
 The class FavoritesDbAdapter and corresponding database favorite.db seem to only exist for backwards compatibility and are not used.
@@ -15,13 +15,14 @@ The journey_data column contains JSON data about the journey. Example:
   
 The five latest journeys are displayed here, in order of most recently modified. Non-starred journeys outside of the 5 most recent are deleted, but even starred journeys are not preferentially displayed here.  
 
-Code relating to the toggling of favourites is found inflateView, around line 730.
+Code relating to the toggling of favourites is found in the function inflateView, around line 730. 
 
 
 ## RoutesActivity
 ![alt text](./routesactivity.png)
 \
-The currently viewed  journey can be starred here. 
+The currently viewed journey can be starred here. Pressing the star icon (actionbar_item_star) calls the function handleStarAction (around line 934) which toggles the "starred" value in the database. This Activity class also handles general calling of the journeys database in updateJourneyHistory (around line 966).
+
 
 ## FavoritesFragment
 ![alt text](./favoritesfragment.png)
