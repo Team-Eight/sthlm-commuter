@@ -15,6 +15,7 @@ Welcome to Stockholm Commute's documentation!
    Time
    Objects
    Deviation
+   Location
    FAQ
  
 
