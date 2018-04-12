@@ -10,7 +10,6 @@ Checks if "done" has been pressed. If it has the function getSelectedTransportMo
 
 Creates an intent with the JourneyQuery object as a parameter and the instruction EXTRA_Journey_Query. 
 
-
 ___
 
 
@@ -36,7 +35,7 @@ The function *toUri* converts a list with transportModes objects to a list with 
 
 The travel modes are added to a URI in the form *transportModes="travelmode"*
 
-### LegUtil.java
+### LegUtil
 The functions *transportModesToTravelModes* and *travelModesToTransportModes* converts a list of transportMode objects to a list of travelMode objects and vice versa.  
 
 The *getTransportDrawable* function looks at the travelmode of the leg (led.getTravelMode) and supplies an icon accordingly. 
@@ -90,7 +89,6 @@ The journeyquery uri is fetched from the *onSearchRoutes* function.
 Creates a JourneyQuery object from a JSON object. Only concerns favourites.
 
 ## Files concerned 
-
 
 * api/TravelModeQuery.java
 * api/ApiService.java
