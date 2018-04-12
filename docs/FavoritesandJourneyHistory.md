@@ -1,4 +1,4 @@
-# Journeys
+# Favorites and Journey history
 All favorites (starred journeys) begin as journey entries in the journeys table in journeys.db. This database file is primarily handled by JourneysProvider.
 Journeys are starred or unstarred by toggling the star icons in the PlannerFragment view or the RoutesActivity view.
 All starred journeys are loaded and displayed in the FavoritesFragment view.
