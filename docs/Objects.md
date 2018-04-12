@@ -45,7 +45,7 @@ The site consists of: <br/>
 - A location "mLocation", gps coordinates for the site
 - An int "mSource", describing if the site came from STHLM_traveling or google places
 
-The site is what is used in the journeyqueries to describe where we are and where we want to go, this is relayed to the STHLM_traveling API.
+The site is what is used in journeyqueries to describe where we are and where we want to go, this is relayed to the STHLM_traveling API.
 
 
 ## TravelMode 
