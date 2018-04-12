@@ -11,7 +11,7 @@ Checks if "done" has been pressed. If it has the function getSelectedTransportMo
 Creates an intent with the JourneyQuery object as a parameter and the instruction EXTRA_Journey_Query. 
 
 
-<br>
+<br/>
 
 
 
