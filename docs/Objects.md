@@ -20,10 +20,13 @@ The route is used to describe how the different trips look, e.g. how long it tak
 
 ## Leg
 ![alt text](./img/leg.png) <br/>
-The leg object consists of information that the route uses to display the trip to the end user. <br/>
-
+The leg object consists of information that the route uses to display the different parts of the trip to the user. <br/>
+For example if a user needs to take a bus and a train afterwards this would result in two separate legs.
 
 ## IntermediateStop
+![alt text](./img/intermediate_stop.png) <br/>
+The intermediate stop object consists of: <br/>
+- 
 ## TravelMode 
 Consists of a string corresponding to a travel mode (ie. bus, train etc.)
 ## TravelModeQuery
