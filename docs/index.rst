@@ -15,6 +15,7 @@ Welcome to Stockholm Commute's documentation!
    FavoritesandJourneyHistory
    Time
    Objects
+   Via
    Deviation
    Location
    FAQ
