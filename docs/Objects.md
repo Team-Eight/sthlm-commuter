@@ -25,8 +25,14 @@ For example if a user needs to take a bus and a train afterwards this would resu
 
 ## IntermediateStop
 ![alt text](./img/intermediate_stop.png) <br/>
+The intermediate stop is used during trips if the user will have to switch between two legs and wait for a period inbetween.
 The intermediate stop object consists of: <br/>
-- 
+- A location describing in GPS coordinates where the stop is <br/>
+- A starttime stating when the stop "starts"
+- A starttime in realtime stating in realttime when the stop "starts"
+- A stoptime stating when the trip continues
+- A stoptime in realtime when the trip continues
+
 ## TravelMode 
 Consists of a string corresponding to a travel mode (ie. bus, train etc.)
 ## TravelModeQuery
