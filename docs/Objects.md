@@ -2,7 +2,9 @@
 
 
 ## Plan
+![alt text](./img/plan-contents.PNG)
 The plan object contains
+
 ## Route
 ## Leg
 ## IntermediateStop
