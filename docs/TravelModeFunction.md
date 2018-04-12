@@ -34,9 +34,9 @@ From a parcel object a JourneyQuery object is created. The object consist of, am
 Checks if the user have filtered travel modes. 
 
 ### toJson 
-`
+```
 public JSONObject toJson(boolean all) throws JSONException
-`
+```
 Creates a JSON object with an array based upon the list of travel modes decided by the user (*transportModes*) to send information to backend. **Only used when saving favorite routes**
 
 
@@ -62,9 +62,14 @@ public void planTransit(final JourneyQuery journeyQuery, final Callback callback
 ```
 A travel plan is requested from the sthlmTraveling back end with a TravelModeQuery as a parameter. 
 
-
 ### fetchTransitRoute 
-the function calls the planTransit function through the mRouter object. 
+The function calls the planTransit function through the mRouter object. 
+
+### onCreate 
+The journey query is fetched from the *getJourneyQueryFromIntent* function. 
+
+### getJourneyQueryFromIntent
+The journeyquery uri is fetched from the *onSearchRoutes* function. 
 
 ### create 
 Creates a JourneyQuery object from a JSON object. Only concerns favourites.
