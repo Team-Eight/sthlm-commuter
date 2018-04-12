@@ -5,11 +5,18 @@ Here, the user may type in anything he or she likes. The app will then try to ma
 
 ## ChangeRouteTimeActivity
 
+Basically the whole via-idea is handled in this class, ChangeRouteTimeActivity. 
+
+As the user inputs the String into the app, the function 
+
 This is done through the class ChangeRouteTimeActivity, where a Site, mViaPoint is created. This ends up as our 'via'-Site.
 
-We create a type called DelayAutoCompleteTextView which executes a request to an API with the user input String, fetching SL-stops or addresses.
-This shows a drop down menu of available results. Read about it here: https://developer.android.com/reference/android/widget/AutoCompleteTextView.html
+In the method createAutoCompleteTextView, we send a request to an API with the user input String, fetching SL-stops or addresses.
+This shows a drop down menu of available results. 
 
-The function createAutoCompleteTextView is then used to create the site where you want to go
+Read about it here: https://developer.android.com/reference/android/widget/AutoCompleteTextView.html
 
-mJourneyQuery.via is the last part that is changed, the actual query that is sent off to be processed.
+It is quite unclear how this goes from a selected Site in the dropdown menu to our Site object, mViaPoint.
+However the Point does end up as a correct Site. Later on we call upon the function buildStop, which takes our site and an AutoCompleteTextView. From that we use .getText() and compare our Site with the site that we selected earlier. Naturally they should be the same, and we return an error if they are not.
+
+Finally mJourneyQuery.via is the last part that is changed, the actual query that is sent off to be processed.
