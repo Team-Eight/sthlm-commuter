@@ -3,23 +3,23 @@
 
 ## Plan
 ![alt text](./img/plan-contents.PNG) <br/>
-The plan object consists of: 
-    A list of routes
-    A long describing how many miliseconds ago it was updated and
-    A list of routeError objects.
-The plan object is used to list the available routes from one location to another.
+The plan object consists of: <br/>
+    A list of routes <br/>
+    A long describing how many miliseconds ago it was updated <br/>
+    A list of routeError objects. <br/>
+The plan object is used to list the available routes from one location to another. <br/>
 
 ## Route
 ![alt text](./img/Route-contents.PNG) <br/>
-The route object consists of:
-    An int called "Duration" describing how long the trip will take
-    A list of leg objects
-    A string "mode" describing the different traveling modes
-    A boolean "Fare" describing if ticket purchases can be made for this trip
-The route is used to describe how the different trips look, e.g. how long it takes, if it goes by boat or train etc... 
+The route object consists of: <br/>
+    An int called "Duration" describing how long the trip will take <br/>
+    A list of leg objects <br/>
+    A string "mode" describing the different traveling modes <br/>
+    A boolean "Fare" describing if ticket purchases can be made for this trip <br/>
+The route is used to describe how the different trips look, e.g. how long it takes, if it goes by boat or train etc... <br/>
 
 ## Leg
-The leg object consists of:
+The leg object consists of: <br/>
 
 ## IntermediateStop
 ## TravelMode 
