@@ -43,7 +43,7 @@ The members of Team 8 are the following: <br>
 <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/user.svg" alt="Team Member" width="2%">
 <a href="mailto:aehlert@kth.se?subject=[II1305] STHLM-Commute"> Anton Ehlert</a> <br>
 <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/user.svg" alt="Team Member" width="2%">
-<a href="mailto:blendaf@kth.se?subject=[II1305] STHLM-Commute"> Blenda Fröjd</a> <br>
+<a href="mailto:blendaf@kth.se?subject=[II1305] STHLM-Commute"> Blenda Fröjdh</a> <br>
 
 Should there be any questions/problems, they are the the ones who should be contacted.
 There's currently no single entity to contact, so simply contact one of the above listed team members (click their respective names).
