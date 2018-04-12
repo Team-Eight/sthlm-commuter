@@ -10,7 +10,7 @@ Creates a TravelModeQuery object that consist of a list with travelModes and add
 Takes a string containing several travel modes, parses the string and creates a new TravelModeQuery object(list of TravelMode objects).  
 
 ### TransportMode
-Contains strings corresponding to the different travel modes. Also contains index variables for each of the travel modes, the purpose of which is still unknown. A *getIndex* function also exists which returns the index of the corresponding travel mode. 
+Contains strings corresponding to the different travel modes(probably according to the APIs own naming conventions). Also contains index variables for each of the travel modes, the purpose of which is still unknown. A *getIndex* function also exists which returns the index of the corresponding travel mode. 
 
 ### uriV2
 Decodes a URI and calls the *fromStringList* function to create a TravelModeQuery object. Creates a list of TransportMode objects by translating the TravelModeQuery object (a list of TravelMode objects).
@@ -54,31 +54,25 @@ The function saves the URI in a variable called *routesUri*. A new *android.cont
 ### Leg.java
 In the function *Leg*, travel modes decided by the user is assigned to the variable *travelMode*.
 
+
 ### planTransit
 ```
 public void planTransit(final JourneyQuery journeyQuery, final Callback callback, final String ident, final @Nullable String dir)
 ```
 A list of TravelMode object is created from the JourneyQuery object's transportModes arraylist. A new TravelModeQuery object is created from the list. The *apiService.getPlan* function is called with the TravelModeQuery as a parameter. The travel mode setting are sent to the backend and then forwarded to the SL API. 
 
-### fetchTransitRoutes
-Fetches routes available from public transport by calling planTransit using the mRouter object. With parameter mJourneyQuery which is set by *getJourneyQueryFromIntent*
-
-## getJourneyQueryFromIntent
-
-
-
- 
 ### create 
-Creates a JourneyQuery object from a JSON object from favourites.
+Creates a JourneyQuery object from a JSON object. Only concerns favourites.
 
-## File Structure
+## Files concerned 
 
-* models/TravelMode.java
+
 * api/TravelModeQuery.java
-* planner/JourneyQuery.java
 * api/ApiService.java
+* models/TravelMode.java
 * models/Leg.java
 * models/Route.java (?)
+* planner/JourneyQuery.java
 * routing/Router.java 
 * site/PlacesProvider.java
 * site/TransportMode.java
