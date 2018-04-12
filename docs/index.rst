@@ -6,7 +6,7 @@
 Welcome to Stockholm Commute's documentation!
 =============================================
 
-.. image:: https://team-eight\.github.io/assets/img/logo.png
+.. image:: https://team-eight.github.io/assets/img/logo.png
  :alt: Logo
  :align: center
 
