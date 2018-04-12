@@ -102,7 +102,7 @@ In Android Callbacks are used f.e. between Activities and Fragments. Because Fra
 ## Reverse
 While at the Search page there are two different reverses, one which is located in the PlannerFragment AKA frontpage of search, and one which is located in the RoutesActivity AKA second searchpage.
 
-This is the first reverse button/function which is loactade in the PlannerFragment AKA Frontpage of search. The button is R.id.reverse_start_end
+This is the first reverse button/function which is located in the PlannerFragment AKA Frontpage of search. The button is R.id.reverse_start_end
 ```
 public class PlannerFragment{
     public void initViews() {
@@ -132,12 +132,12 @@ The second reverse is the more complex of the two, yet still very simple. When t
 
 ```
 public class RoutesActivity
-public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actionbar_item_reverse:
                 reverseJourneyQuery();
 
-protected void reverseJourneyQuery() {
+    protected void reverseJourneyQuery() {
         Site tmpStartPoint = new Site(mJourneyQuery.destination);
         Site tmpEndPoint = new Site(mJourneyQuery.origin);
 
