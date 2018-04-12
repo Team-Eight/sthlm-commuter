@@ -35,6 +35,17 @@ The intermediate stop object consists of: <br/>
 - A stoptime stating when the trip continues
 - A stoptime in realtime when the trip continues
 
+## Site
+![alt text](./img/site-contents.PNG) <br/>
+The site consists of: <br/>
+- A String" mID", an id for the site
+- A string" mName", the name of the site
+- A string "mLocality", name of the municipality the site is located in
+- A string "mType", describing if the site is an adress or a transit stop
+- A location "mLocation", gps coordinates for the site
+- An int "mSource", describing if the site came from STHLM_traveling or google places
+
+
 ## TravelMode 
 Consists of a string corresponding to a travel mode (ie. bus, train etc.)
 ## TravelModeQuery
