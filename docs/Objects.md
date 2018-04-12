@@ -19,7 +19,7 @@ The route object consists of: <br/>
 The route is used to describe how the different trips look, e.g. how long it takes, if it goes by boat or train etc... <br/>
 
 ## Leg
-![alt text](./img/Leg.PNG) <br/>
+![alt text](./img/leg.png) <br/>
 The leg object consists of information that the route uses to display the trip to the end user. <br/>
 
 
