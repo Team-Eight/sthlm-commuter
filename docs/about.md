@@ -8,8 +8,8 @@ The following sections contains the members of Team 8 and ways to contact them.
 
 ### Contributors
 The members of Team 8 are the following: <br>
-<img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/user-circle.svg" alt="Project Owner" width="2%">
-<a href="mailto:filipap@kth.se?subject=[II1305] STHLM-Commute"> Filip Appelgren</a> (**Project Owner**) <br>
+<img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/user-circle.svg" alt="Product Owner" width="2%">
+<a href="mailto:filipap@kth.se?subject=[II1305] STHLM-Commute"> Filip Appelgren</a> (**Product Owner**) <br>
 <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/user-secret.svg" alt="Scrum Master" width="2%">
 <a href="mailto:ohahr@kth.se?subject=[II1305] STHLM-Commute"> Oskar Hahr</a> (**Scrum Master**) <br>
 <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/user.svg" alt="Team Member" width="2%">
