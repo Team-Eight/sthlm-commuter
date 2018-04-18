@@ -129,8 +129,7 @@ public class RoutesActivity extends BaseListActivity implements
     private Button mTimeAndDate;
 
     private TabLayout mTabLayout;
-    private static RoutesAdapter mTestRouteAdapter[] = new RoutesAdapter[3];
-    private static JourneyQuery  mTestJourneyQueries[] = new JourneyQuery[3];
+    private static TabWrap  mTabWraps[] = new TabWrap[3];
 
     private View mEmptyView;
 
@@ -147,7 +146,7 @@ public class RoutesActivity extends BaseListActivity implements
     private FrameLayout mRouteAlternativesStub;
     private Router mRouter;
     private Monitor mMonitor;
-
+    private Router.Callback mPlanCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +196,12 @@ public class RoutesActivity extends BaseListActivity implements
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                initListView(mTestRouteAdapter[mTabLayout.getSelectedTabPosition()]);
+                mJourneyQuery = selectedTab().jq;
+                mRouteAdapter = selectedTab().ra;
+                mTransitPlan  = selectedTab().t_plan;
+                mPlan         = selectedTab().plan;
+                mPlanCallback = selectedTab().callback;
+                initListView(null);
             }
 
             @Override
@@ -224,10 +228,14 @@ public class RoutesActivity extends BaseListActivity implements
             public void handleUpdate() {
                 if (mTransitPlan != null
                         && mTransitPlan.shouldRefresh(System.currentTimeMillis())) {
-                    mRouter.refreshTransit(mJourneyQuery, mPlanRefreshCallback);
+                    mRouter.refreshTransit(mJourneyQuery, mTabWraps[0].callback);
                 }
             }
         };
+
+        //moved these 2 rows from onResume (wont update routes onresume cuz it interferes with tabs)
+        initRoutes(mJourneyQuery);
+        mMonitor.onStart();
     }
 
     @Override
@@ -276,6 +284,7 @@ public class RoutesActivity extends BaseListActivity implements
 
     public void updateRouteAlternatives(Plan plan) {
         mPlan = plan;
+        selectedTab().plan = mPlan;
 
         if (mRouteAlternativesView == null) {
             mRouteAlternativesView = LayoutInflater.from(RoutesActivity.this).inflate(
@@ -337,7 +346,7 @@ public class RoutesActivity extends BaseListActivity implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem starItem = menu.findItem(R.id.actionbar_item_star);
-        if (isStarredJourney(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()])) {
+        if (isStarredJourney(mJourneyQuery)) {
             starItem.setIcon(R.drawable.ic_action_star_on);
             ViewHelper.tintIcon(getResources(), starItem.getIcon());
         } else {
@@ -361,6 +370,7 @@ public class RoutesActivity extends BaseListActivity implements
         switch (item.getItemId()) {
             case R.id.actionbar_item_reverse:
                 reverseJourneyQuery();
+                updateTabs(false);
                 return true;
             case R.id.actionbar_item_star:
                 handleStarAction();
@@ -461,8 +471,6 @@ public class RoutesActivity extends BaseListActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        initRoutes(mJourneyQuery);
-        mMonitor.onStart();
     }
 
     @Override
@@ -530,11 +538,11 @@ public class RoutesActivity extends BaseListActivity implements
     }
     private void initListView(RoutesAdapter ra) {
         updateTabs(false);
-        updateStartAndEndPointViews(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()]);
+        updateStartAndEndPointViews(mJourneyQuery);
         mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
                 .inflate(R.layout.routes_list_header, getListView(), false);
         getListView().addHeaderView(mRouteAlternativesStub, null, false);
-        setListAdapter(ra);
+        setListAdapter(mRouteAdapter);
         getListView().setHeaderDividersEnabled(false);
         getListView().setVerticalFadingEdgeEnabled(false);
         getListView().setHorizontalFadingEdgeEnabled(false);
@@ -547,7 +555,7 @@ public class RoutesActivity extends BaseListActivity implements
         int headerViewsCount = getListView().getHeaderViewsCount();
         position -= headerViewsCount;
 
-        int viewType = getSelectedTab().getItemViewType(position);
+        int viewType = mRouteAdapter.getItemViewType(position);
         switch (viewType) {
             case RoutesAdapter.TYPE_GET_EARLIER:
                 mRouter.planTransit(mJourneyQuery, mPlanCallback, ScrollDir.PREVIOUS);
@@ -556,12 +564,12 @@ public class RoutesActivity extends BaseListActivity implements
                 mRouter.planTransit(mJourneyQuery, mPlanCallback, ScrollDir.NEXT);
                 break;
             case RoutesAdapter.TYPE_ROUTES:
-                Route route = getSelectedTab().getTripItem(position);
+                Route route = mRouteAdapter.getTripItem(position);
                 findRouteDetails(route);
                 break;
         }
     }
-
+/*
     private Router.Callback mPlanRefreshCallback = new Router.Callback() {
         @Override
         public void onPlan(Plan plan) {
@@ -586,7 +594,7 @@ public class RoutesActivity extends BaseListActivity implements
             mEmptyView.setVisibility(View.GONE);
             showErrorForPublicTransport(getString(R.string.network_problem_message));
         }
-    };
+    };*/
 
     public void showRoutes() {
         ViewHelper.crossfade(mEmptyView, getListView());
@@ -838,24 +846,50 @@ public class RoutesActivity extends BaseListActivity implements
     {
         if(addNewTab) {
 
-            mTestRouteAdapter[2] = mTestRouteAdapter[1];
-            mTestRouteAdapter[1] = mTestRouteAdapter[0];
-            mTestRouteAdapter[0] = mRouteAdapter;
-
-            mTestJourneyQueries[2] = mTestJourneyQueries[1];
-            mTestJourneyQueries[1] = mTestJourneyQueries[0];
-            mTestJourneyQueries[0] = mJourneyQuery;
+            mTabWraps[2] = null;
+            mTabWraps[2] =  mTabWraps[1];
+            mTabWraps[1] =  mTabWraps[0];
+            mTabWraps[0] = new TabWrap(mJourneyQuery, mRouteAdapter, mTransitPlan, mPlan);
 
             for(int i = 0; i <3 ; i ++)
-                if(mTestRouteAdapter[i] != null)
+                if(mTabWraps[i] != null)
                     mTabLayout.addTab(mTabLayout.newTab());
 
         }
         for(int i = 0; i < mTabLayout.getTabCount(); i ++)
-            mTabLayout.getTabAt(i).setText(mTestJourneyQueries[i].origin + " -> " + mTestJourneyQueries[i].destination);
+            mTabLayout.getTabAt(i).setText(mTabWraps[i].jq.origin + " -> " + mTabWraps[i].jq.destination);
+
+        //update search time when switching tab
+        mTimeAndDate.setText(buildDateTimeString());
+
+        //update alternative route journey-time when switching  tab
+        if(mRouteAlternativesView != null) {
+            TextView footDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_foot_description);
+            TextView bikeDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_bike_description);
+            TextView carDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_car_description);
+            for (Route route : selectedTab().plan.getRoutes()) {
+                switch (route.getMode()) {
+                    case "foot":
+                        footDurationText.setText(DateTimeUtil.formatDetailedDuration(getResources(),
+                                route.getDuration() * 1000));
+                        break;
+                    case "bike":
+                        bikeDurationText.setText(DateTimeUtil.formatDetailedDuration(getResources(),
+                                route.getDuration() * 1000));
+                        break;
+                    case "car":
+                        carDurationText.setText(DateTimeUtil.formatDetailedDuration(getResources(),
+                                route.getDuration() * 1000));
+                        break;
+                }
+            }
+        }
     }
-    private RoutesAdapter getSelectedTab(){
-        return mTestRouteAdapter[mTabLayout.getSelectedTabPosition()];
+    private TabWrap selectedTab(){
+        TabWrap ret = mTabWraps[mTabLayout.getSelectedTabPosition()];
+        if(ret == null)
+            ret = new TabWrap();
+        return ret;
     }
 
     /**
@@ -1088,7 +1122,48 @@ public class RoutesActivity extends BaseListActivity implements
         // TODO: Store created id and work on that while toggling if starred or not.
 
     }
+    private class TabWrap{
+        JourneyQuery jq;
+        RoutesAdapter ra;
+        Plan t_plan;
+        Plan plan;
+        public TabWrap(){
+            jq = null; ra = null; t_plan = null; plan = null;
+        }
+        public TabWrap(JourneyQuery jq, RoutesAdapter ra, Plan t_plan, Plan plan){
+            this.jq = jq;
+            this.ra = ra;
+            this.t_plan = t_plan;
+            this.plan = plan;
+        }
+        Router.Callback callback = new Router.Callback() {
+            @Override
+            public void onPlan(Plan plan) {
+                dismissProgress();
+                if(!plan.hasErrors("transit"))
+                    updateWrapData(plan);
+            }
 
+            @Override
+            public void onPlanError(JourneyQuery journeyQuery, String errorCode) {
+                Log.w(TAG, "Failed to reload routes.");
+            }
+        };
+        private void updateWrapData(Plan plan) {
+            t_plan = plan;
+            jq.ident = plan.getPaginateRef();
+            // TODO: Add to API
+            jq.hasPromotions = true;
+            jq.promotionNetwork = 1;
+
+            if(ra != null)
+
+                ra.refill(plan.getRoutes());
+            showRoutes();
+            supportInvalidateOptionsMenu();
+            dismissProgress();
+        }
+    }
     private static class RoutesAdapter extends BaseAdapter {
 
         public static final int TYPE_GET_EARLIER = 0;
