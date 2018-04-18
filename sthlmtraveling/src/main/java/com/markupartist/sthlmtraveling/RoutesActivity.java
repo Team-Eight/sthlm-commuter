@@ -129,8 +129,8 @@ public class RoutesActivity extends BaseListActivity implements
     private Button mTimeAndDate;
 
     private TabLayout mTabLayout;
-    private static RoutesAdapter mTestRouteAdapter[] = new RoutesAdapter[4];
-    private static String mTestText[] = new String[3];
+    private static RoutesAdapter mTestRouteAdapter[] = new RoutesAdapter[3];
+    private static JourneyQuery  mTestJourneyQueries[] = new JourneyQuery[3];
 
     private View mEmptyView;
 
@@ -195,7 +195,6 @@ public class RoutesActivity extends BaseListActivity implements
 
         mTabLayout = findViewById(R.id.Tab);
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            private TabLayout.Tab prevTab;
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 initListView(mTestRouteAdapter[mTabLayout.getSelectedTabPosition()]);
@@ -338,7 +337,7 @@ public class RoutesActivity extends BaseListActivity implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem starItem = menu.findItem(R.id.actionbar_item_star);
-        if (isStarredJourney(mJourneyQuery)) {
+        if (isStarredJourney(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()])) {
             starItem.setIcon(R.drawable.ic_action_star_on);
             ViewHelper.tintIcon(getResources(), starItem.getIcon());
         } else {
@@ -509,10 +508,10 @@ public class RoutesActivity extends BaseListActivity implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             String pattern = android.text.format.DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMd HHmm");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
-            return simpleDateFormat.format(mJourneyQuery.time);
+            return simpleDateFormat.format(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()].time);
         } else {
             DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
-            return dateFormat.format(mJourneyQuery.time);
+            return dateFormat.format(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()].time);
         }
     }
 
@@ -531,6 +530,7 @@ public class RoutesActivity extends BaseListActivity implements
     }
     private void initListView(RoutesAdapter ra) {
         updateTabs(false);
+        updateStartAndEndPointViews(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()]);
         mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
                 .inflate(R.layout.routes_list_header, getListView(), false);
         getListView().addHeaderView(mRouteAlternativesStub, null, false);
@@ -686,7 +686,7 @@ public class RoutesActivity extends BaseListActivity implements
     private void findRouteDetails(final Route route) {
         // TODO: Change to pass the trip later on instead.
         Intent i = new Intent(RoutesActivity.this, RouteDetailActivity.class);
-        i.putExtra(RouteDetailActivity.EXTRA_JOURNEY_QUERY, mJourneyQuery);
+        i.putExtra(RouteDetailActivity.EXTRA_JOURNEY_QUERY, mTestJourneyQueries[mTabLayout.getSelectedTabPosition()]);
         i.putExtra(RouteDetailActivity.EXTRA_ROUTE, route);
         startActivity(i);
     }
@@ -842,17 +842,17 @@ public class RoutesActivity extends BaseListActivity implements
             mTestRouteAdapter[1] = mTestRouteAdapter[0];
             mTestRouteAdapter[0] = mRouteAdapter;
 
-            mTestText[2] = mTestText[1];
-            mTestText[1] = mTestText[0];
-            mTestText[0] = mJourneyQuery.origin + " -> " + mJourneyQuery.destination;
+            mTestJourneyQueries[2] = mTestJourneyQueries[1];
+            mTestJourneyQueries[1] = mTestJourneyQueries[0];
+            mTestJourneyQueries[0] = mJourneyQuery;
 
-            for(int i = 0; i < 3; i ++)
+            for(int i = 0; i <3 ; i ++)
                 if(mTestRouteAdapter[i] != null)
                     mTabLayout.addTab(mTabLayout.newTab());
 
         }
         for(int i = 0; i < mTabLayout.getTabCount(); i ++)
-            mTabLayout.getTabAt(i).setText(mTestText[i]);
+            mTabLayout.getTabAt(i).setText(mTestJourneyQueries[i].origin + " -> " + mTestJourneyQueries[i].destination);
     }
     private RoutesAdapter getSelectedTab(){
         return mTestRouteAdapter[mTabLayout.getSelectedTabPosition()];
