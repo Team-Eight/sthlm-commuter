@@ -115,6 +115,10 @@ public class RoutesActivity extends BaseListActivity implements
             "com.markupartist.sthlmtraveling.state.plan";
 
     private RoutesAdapter mRouteAdapter;
+    private static RoutesAdapter mTestRouteAdapter[] = new RoutesAdapter[4];
+    private static int mTestTabNum = 0;
+    private int mTestSelectedTab = 0;
+    private static String mTestText[] = new String[3];
 
     private LocationManager mMyLocationManager;
 
@@ -125,6 +129,8 @@ public class RoutesActivity extends BaseListActivity implements
 
     private Bundle mSavedState;
     private Button mTimeAndDate;
+    private Button mTestCurrent, mTest2, mTest3, mTest4, mTestClear;
+    private View mTestDivider2, mTestDivider3, mTestDivider4;
     private View mEmptyView;
 
     // variables that control the Action Bar auto hide behavior (aka "quick recall")
@@ -183,6 +189,62 @@ public class RoutesActivity extends BaseListActivity implements
 
         MyApplication app = MyApplication.get(this);
         mRouter = new Router(app.getApiService());
+
+        mTestCurrent = findViewById(R.id.current);
+        mTestCurrent.setOnClickListener(this);
+        mTest2 = findViewById(R.id.test2);
+        mTest2.setOnClickListener(this);
+        mTestDivider2 = findViewById(R.id.action_divider2);
+        mTest3 = findViewById(R.id.test3);
+        mTest3.setOnClickListener(this);
+        mTestDivider3 = findViewById(R.id.action_divider3);
+        mTest4 = findViewById(R.id.test4);
+        mTest4.setOnClickListener(this);
+        mTestDivider4 = findViewById(R.id.action_divider4);
+        mTestClear = findViewById(R.id.test_clear);
+        mTestClear.setOnClickListener(this);
+
+        mTest2.setTextSize(10);
+        mTest3.setTextSize(10);
+        mTest4.setTextSize(10);
+        switch (mTestTabNum) {
+            case 0:
+                mTest2.setVisibility(View.VISIBLE);
+                mTest2.setText("+");
+                mTestDivider2.setVisibility(View.VISIBLE);
+                mTestDivider3.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                mTest2.setVisibility(View.VISIBLE);
+                mTest2.setText(mTestText[0]);
+                mTestDivider2.setVisibility(View.VISIBLE);
+                mTest3.setVisibility(View.VISIBLE);
+                mTest3.setText("+");
+                mTestDivider3.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                mTest2.setVisibility(View.VISIBLE);
+                mTest2.setText(mTestText[0]);
+                mTestDivider2.setVisibility(View.VISIBLE);
+                mTest3.setVisibility(View.VISIBLE);
+                mTest3.setText(mTestText[1]);
+                mTestDivider3.setVisibility(View.VISIBLE);
+                mTest4.setVisibility(View.VISIBLE);
+                mTest4.setText("+");
+                mTestDivider4.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                mTest2.setVisibility(View.VISIBLE);
+                mTest2.setText(mTestText[0]);
+                mTestDivider2.setVisibility(View.VISIBLE);
+                mTest3.setVisibility(View.VISIBLE);
+                mTest3.setText(mTestText[1]);
+                mTestDivider3.setVisibility(View.VISIBLE);
+                mTest4.setVisibility(View.VISIBLE);
+                mTest4.setText(mTestText[2]);
+                mTestDivider4.setVisibility(View.VISIBLE);
+                break;
+        }
 
         initActionBar();
         updateStartAndEndPointViews(mJourneyQuery);
@@ -489,11 +551,21 @@ public class RoutesActivity extends BaseListActivity implements
 
     private void initListView() {
         mRouteAdapter = new RoutesAdapter(this, new ArrayList<Route>());
+        mTestRouteAdapter[0] = mRouteAdapter;
         // Faked stub, but get the job done.
         mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
                 .inflate(R.layout.routes_list_header, getListView(), false);
         getListView().addHeaderView(mRouteAlternativesStub, null, false);
         setListAdapter(mRouteAdapter);
+        getListView().setHeaderDividersEnabled(false);
+        getListView().setVerticalFadingEdgeEnabled(false);
+        getListView().setHorizontalFadingEdgeEnabled(false);
+    }
+    private void initListView(RoutesAdapter ra) {
+        mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
+                .inflate(R.layout.routes_list_header, getListView(), false);
+        getListView().addHeaderView(mRouteAlternativesStub, null, false);
+        setListAdapter(ra);
         getListView().setHeaderDividersEnabled(false);
         getListView().setVerticalFadingEdgeEnabled(false);
         getListView().setHorizontalFadingEdgeEnabled(false);
@@ -506,7 +578,7 @@ public class RoutesActivity extends BaseListActivity implements
         int headerViewsCount = getListView().getHeaderViewsCount();
         position -= headerViewsCount;
 
-        int viewType = mRouteAdapter.getItemViewType(position);
+        int viewType = getSelectedTab().getItemViewType(position);
         switch (viewType) {
             case RoutesAdapter.TYPE_GET_EARLIER:
                 mRouter.planTransit(mJourneyQuery, mPlanCallback, ScrollDir.PREVIOUS);
@@ -515,7 +587,7 @@ public class RoutesActivity extends BaseListActivity implements
                 mRouter.planTransit(mJourneyQuery, mPlanCallback, ScrollDir.NEXT);
                 break;
             case RoutesAdapter.TYPE_ROUTES:
-                Route route = mRouteAdapter.getTripItem(position);
+                Route route = getSelectedTab().getTripItem(position);
                 findRouteDetails(route);
                 break;
         }
@@ -559,7 +631,9 @@ public class RoutesActivity extends BaseListActivity implements
         mJourneyQuery.hasPromotions = true;
         mJourneyQuery.promotionNetwork = 1;
 
-        mRouteAdapter.refill(plan.getRoutes());
+        if(mRouteAdapter != null)
+
+            mRouteAdapter.refill(plan.getRoutes());
         showRoutes();
         supportInvalidateOptionsMenu();
         dismissProgress();
@@ -760,6 +834,43 @@ public class RoutesActivity extends BaseListActivity implements
                 i.putExtra(EXTRA_JOURNEY_QUERY, mJourneyQuery);
                 startActivityForResult(i, REQUEST_CODE_CHANGE_TIME);
                 break;
+            case R.id.test_clear:
+                setInvisible();
+                break;
+            case R.id.current:
+                mTestSelectedTab = 0;
+                initListView(mTestRouteAdapter[0]);
+                break;
+            case R.id.test2:
+                if(mTestTabNum > 0) {
+                    mTestSelectedTab = 1;
+                    initListView(mTestRouteAdapter[1]);
+                }
+                else {
+                    mTestRouteAdapter[mTestTabNum+1] = mRouteAdapter;
+                    setVisible();
+                }
+                break;
+            case R.id.test3:
+                if(mTestTabNum > 1) {
+                    mTestSelectedTab = 2;
+                    initListView(mTestRouteAdapter[2]);
+                }
+                else {
+                    mTestRouteAdapter[mTestTabNum+1] = mRouteAdapter;
+                    setVisible();
+                }
+                break;
+            case R.id.test4:
+                if(mTestTabNum > 2) {
+                    mTestSelectedTab = 3;
+                    initListView(mTestRouteAdapter[3]);
+                }
+                else {
+                    mTestRouteAdapter[mTestTabNum+1] = mRouteAdapter;
+                    setVisible();
+                }
+                break;
             case R.id.route_foot:
                 for (Route route : mPlan.getRoutes()) {
                     if ("foot".equals(route.getMode())) {
@@ -785,6 +896,76 @@ public class RoutesActivity extends BaseListActivity implements
                 }
                 break;
         }
+    }
+
+    /**
+     * Made by Jakob
+     */
+    private void setVisible(){
+        Log.v("Visible", String.valueOf(mTestTabNum));
+        switch(mTestTabNum) {
+            case 0:
+
+                mTest3.setVisibility(View.VISIBLE);
+                mTestDivider4.setVisibility(View.VISIBLE);
+                mTest2.setTextSize(10);
+                mTestText[mTestTabNum] =mJourneyQuery.origin.getName()+ " -> "+ mJourneyQuery.destination.getName();
+                mTest2.setText(mTestText[mTestTabNum]);
+                mTest3.setText("+");
+                mTestTabNum++;
+                break;
+            case 1:
+
+                mTest4.setVisibility(View.VISIBLE);
+                mTest3.setTextSize(10);
+                mTestText[mTestTabNum] =mJourneyQuery.origin.getName()+ " -> "+ mJourneyQuery.destination.getName();
+                mTest3.setText(mTestText[mTestTabNum]);
+                mTest4.setText("+");
+                mTestTabNum++;
+                break;
+            case 2:
+                mTest4.setVisibility(View.VISIBLE);
+                mTest4.setTextSize(10);
+                mTestText[mTestTabNum] =mJourneyQuery.origin.getName()+ " -> "+ mJourneyQuery.destination.getName();
+                mTest4.setText(mTestText[mTestTabNum]);
+                mTestTabNum++;
+                break;
+        }
+    }
+    private void setInvisible(){
+        Log.v("Invisible", String.valueOf(mTestTabNum));
+
+        mTest2.setText("+");
+        mTest3.setVisibility(View.INVISIBLE);
+        mTestDivider4.setVisibility(View.INVISIBLE);
+        mTest4.setVisibility(View.INVISIBLE);
+        mTestTabNum = 0;
+        mTestSelectedTab = 0;
+        for(RoutesAdapter ra : mTestRouteAdapter)
+            ra = null;
+        /**switch(mTestTabNum) {
+            case 1:
+                mTest2.setVisibility(View.INVISIBLE);
+                mTestDivider3.setVisibility(View.INVISIBLE);
+                //mTestTabNum--;
+                break;
+            case 2:
+                mTest2.setVisibility(View.INVISIBLE);
+                mTestDivider3.setVisibility(View.INVISIBLE);
+
+                mTestTabNum--;
+                break;
+            case 3:
+                mTest3.setVisibility(View.INVISIBLE);
+                mTestDivider4.setVisibility(View.INVISIBLE);
+                //mTestDivider4.setVisibility(View.INVISIBLE);
+                mTestTabNum--;
+                break;
+
+        }*/
+    }
+    private RoutesAdapter getSelectedTab(){
+        return mTestRouteAdapter[mTestSelectedTab];
     }
 
     /**

@@ -28,40 +28,156 @@
         android:divider="@null"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingTop="56dp"
+        android:paddingTop="112dp"
         android:clipToPadding="false"
         />
 
     <LinearLayout
         android:id="@+id/headerbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="112dp"
         android:background="@color/primary_dark"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:gravity="center"
         >
 
-        <Button
-            android:id="@+id/date_time"
-            android:background="?attr/selectableItemBackgroundBorderless"
+        <LinearLayout
+            android:id="@+id/barheader2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/primary_light"
-            android:paddingLeft="@dimen/list_horizontal_padding"
-            android:paddingRight="@dimen/list_horizontal_padding"
-            android:textSize="14sp"
-            android:gravity="start|center_vertical"
-            android:drawableLeft="@drawable/ic_settings"
-            android:drawableStart="@drawable/ic_settings"
-            android:drawablePadding="24dp"
-            tools:text="Date"
-            />
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal"
+            android:gravity="center"
+                >
+            <Button
+                android:id="@+id/date_time"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".50"
+                android:textColor="@color/primary_light"
+                android:paddingLeft="@dimen/list_horizontal_padding"
+                android:paddingRight="@dimen/list_horizontal_padding"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:drawableLeft="@drawable/ic_settings"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="24dp"
+                tools:text="Date"
+                />
+            <View
+                android:id="@+id/action_divider_add"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/list_vertical_padding"
+                android:layout_marginTop="@dimen/list_vertical_padding"
+                android:background="@color/primary_light"
+                />
 
+            <View
+                android:id="@+id/action_divider_clear"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/list_vertical_padding"
+                android:layout_marginTop="@dimen/list_vertical_padding"
+                android:background="@color/primary_light"
+                />
+            <Button
+                android:id="@+id/test_clear"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="192dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:textColor="@color/primary_light"
+                android:textSize="14sp"
+                android:text="CLEAR"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/barheader"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/current"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:textColor="@color/primary_light"
+                android:textSize="14sp"
+                android:text="CURRENT"
+                />
+            <View
+                android:id="@+id/action_divider2"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/list_vertical_padding"
+                android:layout_marginTop="@dimen/list_vertical_padding"
+                android:background="@color/primary_light"
+                />
+            <Button
+                android:id="@+id/test2"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/primary_light"
+                android:layout_weight=".25"
+                android:textSize="14sp"
+                android:text="test2"
+                android:visibility="invisible"
+                />
+            <View
+                android:id="@+id/action_divider3"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/list_vertical_padding"
+                android:layout_marginTop="@dimen/list_vertical_padding"
+                android:background="@color/primary_light"
+                android:visibility="invisible"
+                />
+            <Button
+                android:id="@+id/test3"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:textColor="@color/primary_light"
+                android:textSize="14sp"
+                android:text="test3"
+                android:visibility="invisible"
+                />
+            <View
+                android:id="@+id/action_divider4"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/list_vertical_padding"
+                android:layout_marginTop="@dimen/list_vertical_padding"
+                android:background="@color/primary_light"
+                android:visibility="invisible"
+                />
+            <Button
+                android:id="@+id/test4"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:textColor="@color/primary_light"
+                android:textSize="14sp"
+                android:text="test4"
+                android:visibility="invisible"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <include
         layout="@layout/progress_bar"
         android:id="@+id/empty_view"/>
+
 </android.support.design.widget.CoordinatorLayout>
 
 
