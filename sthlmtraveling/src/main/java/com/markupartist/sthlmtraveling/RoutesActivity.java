@@ -508,10 +508,10 @@ public class RoutesActivity extends BaseListActivity implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             String pattern = android.text.format.DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMd HHmm");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
-            return simpleDateFormat.format(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()].time);
+            return simpleDateFormat.format(mJourneyQuery.time);
         } else {
             DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
-            return dateFormat.format(mTestJourneyQueries[mTabLayout.getSelectedTabPosition()].time);
+            return dateFormat.format(mJourneyQuery.time);
         }
     }
 
@@ -686,7 +686,7 @@ public class RoutesActivity extends BaseListActivity implements
     private void findRouteDetails(final Route route) {
         // TODO: Change to pass the trip later on instead.
         Intent i = new Intent(RoutesActivity.this, RouteDetailActivity.class);
-        i.putExtra(RouteDetailActivity.EXTRA_JOURNEY_QUERY, mTestJourneyQueries[mTabLayout.getSelectedTabPosition()]);
+        i.putExtra(RouteDetailActivity.EXTRA_JOURNEY_QUERY, mJourneyQuery);
         i.putExtra(RouteDetailActivity.EXTRA_ROUTE, route);
         startActivity(i);
     }
