@@ -852,7 +852,7 @@ public class RoutesActivity extends BaseListActivity implements
         mPlanCallback = selectedTab().callback;
         initListView(false);
     }
-
+    //does something
     private void updateStar(){
         if(mMenuAbove != null) {
             MenuItem starItem = mMenuAbove.findItem(R.id.actionbar_item_star);
