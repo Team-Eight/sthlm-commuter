@@ -196,12 +196,7 @@ public class RoutesActivity extends BaseListActivity implements
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mJourneyQuery = selectedTab().jq;
-                mRouteAdapter = selectedTab().ra;
-                mTransitPlan  = selectedTab().t_plan;
-                mPlan         = selectedTab().plan;
-                mPlanCallback = selectedTab().callback;
-                initListView(null);
+                swapTab();
             }
 
             @Override
@@ -219,7 +214,7 @@ public class RoutesActivity extends BaseListActivity implements
         initActionBar();
         updateStartAndEndPointViews(mJourneyQuery);
         updateJourneyHistory();
-        initListView();
+        initListView(true);
         initAutoHideHeader(getListView());
         maybeRequestLocationUpdate();
 
@@ -237,6 +232,7 @@ public class RoutesActivity extends BaseListActivity implements
         initRoutes(mJourneyQuery);
         mMonitor.onStart();
     }
+
 
     @Override
     public void onLocationPermissionGranted() {
@@ -370,7 +366,7 @@ public class RoutesActivity extends BaseListActivity implements
         switch (item.getItemId()) {
             case R.id.actionbar_item_reverse:
                 reverseJourneyQuery();
-                updateTabs(false);
+                updateTabs();
                 return true;
             case R.id.actionbar_item_star:
                 handleStarAction();
@@ -524,21 +520,13 @@ public class RoutesActivity extends BaseListActivity implements
     }
 
 
-    private void initListView() {
-        mRouteAdapter = new RoutesAdapter(this, new ArrayList<Route>());
-        updateTabs(true);
+    private void initListView( boolean shouldAdd) {
+        if(shouldAdd) {
+            mRouteAdapter = new RoutesAdapter(this, new ArrayList<Route>());
+            addTab();
+        }
+        updateTabs();
         // Faked stub, but get the job done.
-        mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
-                .inflate(R.layout.routes_list_header, getListView(), false);
-        getListView().addHeaderView(mRouteAlternativesStub, null, false);
-        setListAdapter(mRouteAdapter);
-        getListView().setHeaderDividersEnabled(false);
-        getListView().setVerticalFadingEdgeEnabled(false);
-        getListView().setHorizontalFadingEdgeEnabled(false);
-    }
-    private void initListView(RoutesAdapter ra) {
-        updateTabs(false);
-        updateStartAndEndPointViews(mJourneyQuery);
         mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
                 .inflate(R.layout.routes_list_header, getListView(), false);
         getListView().addHeaderView(mRouteAlternativesStub, null, false);
@@ -840,23 +828,31 @@ public class RoutesActivity extends BaseListActivity implements
     }
 
     /**
-     * Made by Jakob
+     * Made by Jakob & Didrik
      */
+    private void addTab(){
+        mTabWraps[2] = null;
+        mTabWraps[2] =  mTabWraps[1];
+        mTabWraps[1] =  mTabWraps[0];
+        mTabWraps[0] = new TabWrap(mJourneyQuery, mRouteAdapter, mTransitPlan, mPlan);
 
-    private void updateTabs(boolean addNewTab)
-    {
-        if(addNewTab) {
+        for(int i = 0; i <3 ; i ++)
+            if(mTabWraps[i] != null)
+                mTabLayout.addTab(mTabLayout.newTab());
+    }
 
-            mTabWraps[2] = null;
-            mTabWraps[2] =  mTabWraps[1];
-            mTabWraps[1] =  mTabWraps[0];
-            mTabWraps[0] = new TabWrap(mJourneyQuery, mRouteAdapter, mTransitPlan, mPlan);
+    private void swapTab(){
+        mJourneyQuery = selectedTab().jq;
+        mRouteAdapter = selectedTab().ra;
+        mTransitPlan  = selectedTab().t_plan;
+        mPlan         = selectedTab().plan;
+        mPlanCallback = selectedTab().callback;
+        initListView(false);
+    }
 
-            for(int i = 0; i <3 ; i ++)
-                if(mTabWraps[i] != null)
-                    mTabLayout.addTab(mTabLayout.newTab());
+    private void updateTabs(){
 
-        }
+        updateStartAndEndPointViews(mJourneyQuery);
         for(int i = 0; i < mTabLayout.getTabCount(); i ++)
             mTabLayout.getTabAt(i).setText(mTabWraps[i].jq.origin + " -> " + mTabWraps[i].jq.destination);
 
