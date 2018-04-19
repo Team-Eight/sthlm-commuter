@@ -130,6 +130,7 @@ public class RoutesActivity extends BaseListActivity implements
 
     private TabLayout mTabLayout;
     private static TabWrap  mTabWraps[] = new TabWrap[3];
+    private Menu mMenuAbove;
 
     private View mEmptyView;
 
@@ -334,6 +335,7 @@ public class RoutesActivity extends BaseListActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        mMenuAbove = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actionbar_routes, menu);
         return true;
@@ -341,6 +343,7 @@ public class RoutesActivity extends BaseListActivity implements
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+
         MenuItem starItem = menu.findItem(R.id.actionbar_item_star);
         if (isStarredJourney(mJourneyQuery)) {
             starItem.setIcon(R.drawable.ic_action_star_on);
@@ -850,11 +853,26 @@ public class RoutesActivity extends BaseListActivity implements
         initListView(false);
     }
 
-    private void updateTabs(){
+    private void updateStar(){
+        if(mMenuAbove != null) {
+            MenuItem starItem = mMenuAbove.findItem(R.id.actionbar_item_star);
+            if (isStarredJourney(mJourneyQuery)) {
+                starItem.setIcon(R.drawable.ic_action_star_on);
+                ViewHelper.tintIcon(getResources(), starItem.getIcon());
+            } else {
+                starItem.setIcon(R.drawable.ic_action_star_off);
+                ViewHelper.tintIcon(getResources(), starItem.getIcon());
+            }
+        }
+    }
 
+    private void updateTabs(){
+        updateStar();
         updateStartAndEndPointViews(mJourneyQuery);
         for(int i = 0; i < mTabLayout.getTabCount(); i ++)
-            mTabLayout.getTabAt(i).setText(mTabWraps[i].jq.origin + " -> " + mTabWraps[i].jq.destination);
+            mTabLayout.getTabAt(i).setText(mTabWraps[i].jq.origin.getName().replace("_"," ")
+                    + " -> "
+                    + mTabWraps[i].jq.destination.getName().replace("_"," "));
 
         //update search time when switching tab
         mTimeAndDate.setText(buildDateTimeString());
