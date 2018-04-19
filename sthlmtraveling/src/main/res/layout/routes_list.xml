@@ -65,9 +65,10 @@
             android:background="@color/primary_dark"
             app:tabTextColor="@color/primary_light"
             app:tabSelectedTextColor="@color/accent"
-            android:id="@+id/Tab">
-
+            android:id="@+id/Tab"
+            >
         </android.support.design.widget.TabLayout>
+
     </LinearLayout>
 
     <include

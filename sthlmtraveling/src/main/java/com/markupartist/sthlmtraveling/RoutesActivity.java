@@ -715,6 +715,7 @@ public class RoutesActivity extends BaseListActivity implements
                     Log.d(TAG, "Change time activity cancelled.");
                 } else {
                     mJourneyQuery = data.getParcelableExtra(EXTRA_JOURNEY_QUERY);
+                    selectedTab().jq = mJourneyQuery;
 
                     Log.e(TAG, "JQ: " + mJourneyQuery.toString());
 
