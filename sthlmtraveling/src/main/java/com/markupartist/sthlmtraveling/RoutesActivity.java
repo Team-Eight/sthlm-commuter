@@ -128,6 +128,9 @@ public class RoutesActivity extends BaseListActivity implements
     private Bundle mSavedState;
     private Button mTimeAndDate;
 
+    /**Made by Jakob & Didrik
+     * Used for the tab layout
+     */
     private TabLayout mTabLayout;
     private static TabWrap  mTabWraps[] = new TabWrap[3];
     private Menu mMenuAbove;
@@ -193,6 +196,9 @@ public class RoutesActivity extends BaseListActivity implements
         mRouter = new Router(app.getApiService());
 
 
+        /** Made by Jakob & Didrik
+         * Init tabs // onclick for tabs
+         */
         mTabLayout = findViewById(R.id.Tab);
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -335,7 +341,10 @@ public class RoutesActivity extends BaseListActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Made by Jakob & Didrik
+        // adds a pointer to the menu object to make it accessable
         mMenuAbove = menu;
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actionbar_routes, menu);
         return true;
@@ -524,11 +533,16 @@ public class RoutesActivity extends BaseListActivity implements
 
 
     private void initListView( boolean shouldAdd) {
+        //Made by Jakob & Didrik
+        //
+        //Makes sure the RouteAdapters are only created if needed
+        //Updates the data displayed in tabs when listView is init.
         if(shouldAdd) {
             mRouteAdapter = new RoutesAdapter(this, new ArrayList<Route>());
             addTab();
         }
         updateTabs();
+
         // Faked stub, but get the job done.
         mRouteAlternativesStub = (FrameLayout) LayoutInflater.from(RoutesActivity.this)
                 .inflate(R.layout.routes_list_header, getListView(), false);
@@ -830,8 +844,9 @@ public class RoutesActivity extends BaseListActivity implements
         }
     }
 
-    /**
-     * Made by Jakob & Didrik
+    /** addTab - Made by Jakob & Didrik
+     * Rotates the pointers to match the data with corresponding tab and
+     * adds the new "tab" at index 0 and "removes/replaces" the rightmost tab
      */
     private void addTab(){
         mTabWraps[2] = null;
@@ -844,6 +859,10 @@ public class RoutesActivity extends BaseListActivity implements
                 mTabLayout.addTab(mTabLayout.newTab());
     }
 
+    /** swapTab - Made by Jakob & Didrik
+     * updates the global pointers to the current data which is shown in the current tab
+     *
+     */
     private void swapTab(){
         mJourneyQuery = selectedTab().jq;
         mRouteAdapter = selectedTab().ra;
@@ -852,7 +871,12 @@ public class RoutesActivity extends BaseListActivity implements
         mPlanCallback = selectedTab().callback;
         initListView(false);
     }
-    //does something
+
+    /** updateStar - Made by Jakob & Didrik
+     * Makes sure the graphics of the star/favorite icon is updated to display
+     * the right graphics corresponding to the current tab shown
+     *
+     */
     private void updateStar(){
         if(mMenuAbove != null) {
             MenuItem starItem = mMenuAbove.findItem(R.id.actionbar_item_star);
@@ -866,6 +890,11 @@ public class RoutesActivity extends BaseListActivity implements
         }
     }
 
+    /** updateTabs - Made by Jakob & Didrik
+     * updates the graphically shown data to correspond to the underlying data in
+     * the current tab
+     *
+     */
     private void updateTabs(){
         updateStar();
         updateStartAndEndPointViews(mJourneyQuery);
@@ -900,6 +929,13 @@ public class RoutesActivity extends BaseListActivity implements
             }
         }
     }
+
+    /** selectedTab - Made by Jakob & Didrik
+     * Returns the current tab
+     * @return The currently selected tab as a TabWrap object
+     *
+     */
+
     private TabWrap selectedTab(){
         TabWrap ret = mTabWraps[mTabLayout.getSelectedTabPosition()];
         if(ret == null)
@@ -1137,6 +1173,12 @@ public class RoutesActivity extends BaseListActivity implements
         // TODO: Store created id and work on that while toggling if starred or not.
 
     }
+
+    /** TabWrap - Made by Didrik
+     * Acts as object wrapper and gathers the different data objects and makes
+     * them more manageable.
+     *
+     */
     private class TabWrap{
         JourneyQuery jq;
         RoutesAdapter ra;
@@ -1167,7 +1209,6 @@ public class RoutesActivity extends BaseListActivity implements
         private void updateWrapData(Plan plan) {
             t_plan = plan;
             jq.ident = plan.getPaginateRef();
-            // TODO: Add to API
             jq.hasPromotions = true;
             jq.promotionNetwork = 1;
 
