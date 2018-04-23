@@ -75,6 +75,7 @@ import com.markupartist.sthlmtraveling.utils.DateTimeUtil;
 import com.markupartist.sthlmtraveling.utils.LegUtil;
 import com.markupartist.sthlmtraveling.utils.Monitor;
 import com.markupartist.sthlmtraveling.utils.RtlUtils;
+import com.markupartist.sthlmtraveling.utils.StringUtils;
 import com.markupartist.sthlmtraveling.utils.ViewHelper;
 import com.markupartist.sthlmtraveling.utils.text.RoundedBackgroundSpan;
 import com.markupartist.sthlmtraveling.utils.text.SpanUtils;
@@ -360,6 +361,29 @@ public class RouteDetailActivity extends BaseListActivity {
         return location.getName();
     }
 
+    /**
+     * @author Jakob & Johan
+     * 
+     */
+    private void shareRouteDetails(){
+        StringBuilder sb = new StringBuilder();
+        List<Leg> legs = mRoute.getLegs();
+        sb.append(getString(R.string.from) + " " + legs.get(0).getFrom().getName() + "\n");
+        sb.append(getString(R.string.to) + " " + legs.get(legs.size()-1).getTo().getName() + "\n");
+        sb.append(legs.get(0).getStartTime().toString().substring(0,11) + "\n\n");
+
+        for(int i = 0; i<legs.size();i++){
+            sb.append(legs.get(i).getStartTime().toString().substring(11,16)
+            + " " + legs.get(i).getFrom().getName()
+            + "\n" + legs.get(i).getRouteName().substring(0,1).toUpperCase() + legs.get(i).getRouteName().substring(1)
+            + "\n" + getString(R.string.to) + " " + legs.get(i).getHeadsing().getName()
+            + "\n" + legs.get(i).getEndTime().toString().substring(11,16) + " " + legs.get(i).getTo().getName()
+            + "\n\n");
+        }
+        Log.v("AZNEE",sb.toString());
+
+    }
+
     private void tripTimeDestinationUpdater(){
         BidiFormatter bidiFormatter = BidiFormatter.getInstance(Locale.getDefault());
 
@@ -417,6 +441,7 @@ public class RouteDetailActivity extends BaseListActivity {
         }
         showLegs(legs);
         mRoute = route;
+        shareRouteDetails();
     }
 
     public void showLegs(List<LegViewModel> legs) {
