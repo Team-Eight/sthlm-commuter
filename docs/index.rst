@@ -39,6 +39,7 @@ Are you a member?
 
    about
    TravelModeFunction
+   AlarmPreferences.md
    SearchFunction
    FavoritesandJourneyHistory
    Time
