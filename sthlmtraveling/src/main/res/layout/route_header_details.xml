@@ -99,5 +99,4 @@
         android:padding="@dimen/list_horizontal_padding"
         android:src="@drawable/ic_share_black_24dp"
         />
-
 </RelativeLayout>

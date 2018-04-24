@@ -141,6 +141,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"/>
 
+
     <include
         android:id="@+id/trip_intermediate_stops_layout"
         layout="@layout/trip_row_intermediate"/>

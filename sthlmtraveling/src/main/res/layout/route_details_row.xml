@@ -34,6 +34,7 @@
         android:paddingRight="5dip"
         android:paddingBottom="5dip"
         >
+
 	<ImageView
 	    android:id="@+id/routes_row_transport"
 	    android:src="@drawable/ic_transport_transit_20dp"
