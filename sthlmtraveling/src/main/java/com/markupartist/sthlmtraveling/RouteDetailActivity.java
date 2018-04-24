@@ -115,6 +115,7 @@ public class RouteDetailActivity extends BaseListActivity {
     private Button mNameView;
     private Menu mMenuAbove;
     private String mTimeDestination;
+    private Button mShareButton;
 
 
 //Tab functionality by Oskar Hahr
@@ -139,6 +140,20 @@ public class RouteDetailActivity extends BaseListActivity {
 
             }
         });
+
+        //mShareButton = findViewById(R.id.share_trip_button);
+       /* mShareButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text");
+                String shareBody = RouteDetailsToString();
+                String shareSub = "Subject";
+                myIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
+                myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(myIntent, "Share using"));
+            }
+        });*/
 
         registerScreen("Route details");
 
@@ -365,7 +380,7 @@ public class RouteDetailActivity extends BaseListActivity {
      * @author Jakob & Johan
      * 
      */
-    private void shareRouteDetails(){
+    private String RouteDetailsToString(){
         StringBuilder sb = new StringBuilder();
         List<Leg> legs = mRoute.getLegs();
         sb.append(getString(R.string.from) + " " + legs.get(0).getFrom().getName() + "\n");
@@ -381,7 +396,7 @@ public class RouteDetailActivity extends BaseListActivity {
             + "\n\n");
         }
         Log.v("AZNEE",sb.toString());
-
+        return sb.toString();
     }
 
     private void tripTimeDestinationUpdater(){
@@ -441,7 +456,6 @@ public class RouteDetailActivity extends BaseListActivity {
         }
         showLegs(legs);
         mRoute = route;
-        shareRouteDetails();
     }
 
     public void showLegs(List<LegViewModel> legs) {
