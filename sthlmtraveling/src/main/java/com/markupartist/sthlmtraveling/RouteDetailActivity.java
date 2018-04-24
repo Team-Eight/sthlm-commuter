@@ -118,7 +118,10 @@ public class RouteDetailActivity extends BaseListActivity {
     private ImageButton mShareButton;
 
 
-//Tab functionality by Oskar Hahr
+    /**
+     * @author Oskar Hahr
+     * Added tab functionality
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,20 +141,6 @@ public class RouteDetailActivity extends BaseListActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-
-        mShareButton.findViewById(R.id.share_trip_button);
-        mShareButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent myIntent = new Intent(Intent.ACTION_SEND);
-                myIntent.setType("text");
-                String shareBody = RouteDetailsToString();
-                String shareSub = "Subject";
-                myIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
-                myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(myIntent, "Share using"));
             }
         });
 
@@ -263,6 +252,24 @@ public class RouteDetailActivity extends BaseListActivity {
                 });
             }
         };
+
+        /**
+         * By Jakob Berggren & Johan Edman
+         * Button for Share Trip functionality
+         */
+        mShareButton = findViewById(R.id.share_trip_button);
+        mShareButton.findViewById(R.id.share_trip_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String shareBody = RouteDetailsToStringBody();
+                String shareSub = RouteDetailsToStringSubject();
+                myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(myIntent, "Share using"));
+            }
+        });
     }
 
     void updateStopTimes(IntermediateResponse intermediateResponse) {
@@ -349,13 +356,16 @@ public class RouteDetailActivity extends BaseListActivity {
                 handleStarAction();
                 supportInvalidateOptionsMenu();
                 return true;
-            /** Blenda: **/
+
+            /**
+             * Added by Blenda Fröjdh
+             * - To Support alarms
+             */
             case R.id.actionbar_item_alarm:
                 Intent intent = new Intent(this, AlarmPreferencesActivity.class);
                 intent.putExtra("ParceableTest", mRoute);
                 startActivity(intent);
                 return true;
-            /***/
         }
         return super.onOptionsItemSelected(item);
     }
@@ -377,15 +387,27 @@ public class RouteDetailActivity extends BaseListActivity {
     }
 
     /**
-     * @author Jakob & Johan
-     * 
+     * @author Jakob Berggren & Johan Edman
+     * Share Trip - String builder
+     * TODO: Refactor to foreach to reduce append-nesting
+     * TODO: Reduce to one function with parameter.
      */
-    private String RouteDetailsToString(){
+    private String RouteDetailsToStringSubject() {
         StringBuilder sb = new StringBuilder();
         List<Leg> legs = mRoute.getLegs();
-        sb.append(getString(R.string.from) + " " + legs.get(0).getFrom().getName() + "\n");
-        sb.append(getString(R.string.to) + " " + legs.get(legs.size()-1).getTo().getName() + "\n");
-        sb.append(legs.get(0).getStartTime().toString().substring(0,11) + "\n\n");
+        sb.append(legs.get(0).getFrom().getName()).append(" -> ");
+        sb.append(legs.get(legs.size() - 1).getTo().getName());
+        sb.append(" | ").append(legs.get(0).getStartTime().toString().substring(0, 11));
+
+        return sb.toString();
+    }
+
+    private String RouteDetailsToStringBody(){
+        StringBuilder sb = new StringBuilder();
+        List<Leg> legs = mRoute.getLegs();
+        sb.append(getString(R.string.from)).append(" ").append(legs.get(0).getFrom().getName()).append("\n");
+        sb.append(getString(R.string.to)).append(" ").append(legs.get(legs.size() - 1).getTo().getName()).append("\n");
+        sb.append(legs.get(0).getStartTime().toString().substring(0, 11)).append("\n\n");
 
         for(int i = 0; i<legs.size();i++){
             sb.append(legs.get(i).getStartTime().toString().substring(11,16)
@@ -395,9 +417,9 @@ public class RouteDetailActivity extends BaseListActivity {
             + "\n" + legs.get(i).getEndTime().toString().substring(11,16) + " " + legs.get(i).getTo().getName()
             + "\n\n");
         }
-        Log.v("AZNEE",sb.toString());
         return sb.toString();
     }
+
 
     private void tripTimeDestinationUpdater(){
         BidiFormatter bidiFormatter = BidiFormatter.getInstance(Locale.getDefault());
@@ -970,8 +992,10 @@ public class RouteDetailActivity extends BaseListActivity {
     private int selectTab(){
         return mTabLayout.getSelectedTabPosition();
     }
-    /** updateStar - Made by Jakob & Didrik
-     * Makes sure the graphics of the star/favorite icon is updated to display
+    /**
+     * @author Jakob Berggren & Didrik Axelsson
+     * updateStar - Makes sure the graphics of
+     * the star/favorite icon is updated to display
      * the right graphics corresponding to the current tab shown
      *
      */
