@@ -389,7 +389,6 @@ public class RouteDetailActivity extends BaseListActivity {
     /**
      * @author Jakob Berggren & Johan Edman
      * Share Trip - String builder
-     * TODO: Refactor to foreach to reduce append-nesting
      * TODO: Reduce to one function with parameter.
      */
     private String RouteDetailsToStringSubject() {
@@ -409,14 +408,14 @@ public class RouteDetailActivity extends BaseListActivity {
         sb.append(getString(R.string.to)).append(" ").append(legs.get(legs.size() - 1).getTo().getName()).append("\n");
         sb.append(legs.get(0).getStartTime().toString().substring(0, 11)).append("\n\n");
 
-        for(int i = 0; i<legs.size();i++){
-            sb.append(legs.get(i).getStartTime().toString().substring(11,16)
-            + " " + legs.get(i).getFrom().getName()
-            + "\n" + legs.get(i).getRouteName().substring(0,1).toUpperCase() + legs.get(i).getRouteName().substring(1)
-            + "\n" + getString(R.string.to) + " " + legs.get(i).getHeadsing().getName()
-            + "\n" + legs.get(i).getEndTime().toString().substring(11,16) + " " + legs.get(i).getTo().getName()
-            + "\n\n");
+        for (Leg leg : legs) {
+            sb.append(leg.getStartTime().toString().substring(11, 16));
+            sb.append(" ").append(leg.getFrom().getName()).append("\n");
+            sb.append(leg.getRouteName().substring(0, 1).toUpperCase()).append(leg.getRouteName().substring(1)).append("\n");
+            sb.append(getString(R.string.to)).append(" ").append(leg.getHeadsing().getName()).append("\n");
+            sb.append(leg.getEndTime().toString().substring(11, 16)).append(" ").append(leg.getTo().getName()).append("\n\n");
         }
+
         return sb.toString();
     }
 
