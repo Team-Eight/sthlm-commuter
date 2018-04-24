@@ -115,7 +115,7 @@ public class RouteDetailActivity extends BaseListActivity {
     private Button mNameView;
     private Menu mMenuAbove;
     private String mTimeDestination;
-    private Button mShareButton;
+    private ImageButton mShareButton;
 
 
 //Tab functionality by Oskar Hahr
@@ -141,8 +141,8 @@ public class RouteDetailActivity extends BaseListActivity {
             }
         });
 
-        //mShareButton = findViewById(R.id.share_trip_button);
-       /* mShareButton.setOnClickListener(new View.OnClickListener(){
+        mShareButton.findViewById(R.id.share_trip_button);
+        mShareButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
@@ -153,7 +153,7 @@ public class RouteDetailActivity extends BaseListActivity {
                 myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(myIntent, "Share using"));
             }
-        });*/
+        });
 
         registerScreen("Route details");
 
