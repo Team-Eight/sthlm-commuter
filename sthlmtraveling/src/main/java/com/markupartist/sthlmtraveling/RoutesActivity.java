@@ -133,6 +133,7 @@ public class RoutesActivity extends BaseListActivity implements
      * Used for the tab layout
      */
     private TabLayout mTabLayout;
+
     private static TabWrap  mTabWraps[] = new TabWrap[TAB_CAP];
     private Menu mMenuAbove;
 
@@ -201,6 +202,7 @@ public class RoutesActivity extends BaseListActivity implements
          * Init tabs // onclick for tabs
          */
         mTabLayout = findViewById(R.id.Tab);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -892,6 +894,7 @@ public class RoutesActivity extends BaseListActivity implements
             mTabLayout.removeTabAt(index);
             updateTabs();
         }
+
 
     }
 
