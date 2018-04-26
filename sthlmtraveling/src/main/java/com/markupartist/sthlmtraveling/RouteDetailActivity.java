@@ -299,7 +299,6 @@ public class RouteDetailActivity extends BaseListActivity {
         if (mAdProxy != null) {
             mAdProxy.onPause();
         }
-
         mMonitor.onStop();
     }
 
@@ -323,7 +322,6 @@ public class RouteDetailActivity extends BaseListActivity {
         if (!mRoute.canBuyTicket()) {
             menu.removeItem(R.id.actionbar_item_sms);
         }
-
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -907,7 +905,7 @@ public class RouteDetailActivity extends BaseListActivity {
             mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.tabClose).setVisibility(View.GONE);
         switchTabs();
         if(mNameView!=null)
-           mNameView.setText(mJourneyQuery.destination.toString().replace("MY_LOCATION", "My location"));
+           mNameView.setText(getLocationName(mJourneyQuery.destination.asPlace()));
         updateFooterView(mSubTripAdapter.getItem(mSubTripAdapter.getCount() - 1));
         setListAdapter(mSubTripAdapter);
         tripTimeDestinationUpdater();
@@ -979,17 +977,19 @@ public class RouteDetailActivity extends BaseListActivity {
     private void updateTabText(){
 
         for(int i = 0; i < mTabLayout.getTabCount(); i ++) {
-            String [] timedest = mTabDetails[i].timeString.split("(?= to )");
 
+            CharSequence time = DateTimeUtil.formatDetailedDuration(getResources(), mTabDetails[i].routeDetail.getDuration() * 1000);
+            //String [] timedest = mTabDetails[i].timeString.split("(?= to )");
+            CharSequence dest = getLocationName(mTabDetails[i].journeyQ.destination.asPlace()).toString();
 
-            timedest[1] = timedest[1].replace("MY_LOCATION", "My location");
-            if(timedest[1].length() > 17)
-                timedest[1] = timedest[1].substring(0,16) + "...";
+            //timedest[1] = getLocationName(mJourneyQuery.destination.asPlace()).toString();
+            if(dest.length() > 17)
+                dest = dest.subSequence(0,16) + "...";
 
             ((TextView) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.tabText)).setText(Html.fromHtml("<b> " +
-                    timedest[0]
+                    time
                     + "</b><br> "
-                    + timedest[1]));
+                    + dest));
         }
     }
     private void changeTabColor(TabLayout.Tab tab, boolean sel){
