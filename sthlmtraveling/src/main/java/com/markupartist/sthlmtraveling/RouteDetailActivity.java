@@ -119,7 +119,6 @@ public class RouteDetailActivity extends BaseListActivity {
     private String mTimeDestination;
 
 
-//Tab functionality by Oskar Hahr
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -465,6 +464,7 @@ public class RouteDetailActivity extends BaseListActivity {
             TextView departureTimeView = (TextView) mFooterView.findViewById(R.id.trip_departure_time);
             TextView expectedDepartureTimeView = (TextView) mFooterView.findViewById(R.id.trip_expected_departure_time);
             departureTimeView.setText(DateFormat.getTimeFormat(this).format(legViewModel.leg.getEndTime()));
+
             if (legViewModel.leg.getEndTimeRt() != null && legViewModel.leg.hasDepartureDelay()) {
                 departureTimeView.setPaintFlags(departureTimeView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 expectedDepartureTimeView.setVisibility(View.VISIBLE);
@@ -907,9 +907,8 @@ public class RouteDetailActivity extends BaseListActivity {
             mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.tabClose).setVisibility(View.GONE);
         switchTabs();
         if(mNameView!=null)
-            mNameView.setText(mJourneyQuery.destination.toString());
-        if(mSubTripAdapter != null && mSubTripAdapter.getCount() > 0)
-            updateFooterView(mSubTripAdapter.getItem(mSubTripAdapter.getCount() - 1));
+           mNameView.setText(mJourneyQuery.destination.toString().replace("MY_LOCATION", "My location"));
+        updateFooterView(mSubTripAdapter.getItem(mSubTripAdapter.getCount() - 1));
         setListAdapter(mSubTripAdapter);
         tripTimeDestinationUpdater();
         updateStartAndEndPointViews(mJourneyQuery);
