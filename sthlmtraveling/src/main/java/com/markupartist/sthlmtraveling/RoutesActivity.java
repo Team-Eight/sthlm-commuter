@@ -870,7 +870,6 @@ public class RoutesActivity extends BaseListActivity implements
         mPlan         = selectedTab().plan;
         mPlanCallback = selectedTab().callback;
         initListView(false);
-
     }
 
     /** updateStar - Made by Jakob & Didrik
