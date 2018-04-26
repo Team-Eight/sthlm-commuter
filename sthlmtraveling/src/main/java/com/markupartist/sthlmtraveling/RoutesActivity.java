@@ -158,9 +158,10 @@ public class RoutesActivity extends BaseListActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Locked orientation due to landscape not displaying correctly
+        //Oskar Hahr
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.routes_list);
-
 
 
         registerScreen("Routes");
@@ -932,7 +933,7 @@ public class RoutesActivity extends BaseListActivity implements
         }
     }
 
-    /** updateTabs - Made by Jakob & Didrik
+    /** updateTabs - Made by Jakob, Didrik & Oskar Hahr
      * updates the graphically shown data to correspond to the underlying data in
      * the current tab
      *
@@ -1264,6 +1265,8 @@ public class RoutesActivity extends BaseListActivity implements
             dismissProgress();
         }
     }
+    /** Written by Oskar Hahr
+     * The function is used to update the displayed colour of the tabs when selected/unselected **/
     private void changeTabColor(TabLayout.Tab tab, boolean sel){
         if (sel)
         ((TextView)tab.getCustomView().findViewById(R.id.tabText)).setTextColor(getResources().getColor(R.color.accent));
@@ -1271,7 +1274,8 @@ public class RoutesActivity extends BaseListActivity implements
             if (tab.getCustomView() != null)
             ((TextView)tab.getCustomView().findViewById(R.id.tabText)).setTextColor(getResources().getColor(R.color.primary_light));
     }
-
+    /**Written by Oskar Hahr and Didrik
+     * Updates the text of the tabs **/
     private void updateTabText(){
         for(int i = 0; i < mTabLayout.getTabCount(); i ++) {
 

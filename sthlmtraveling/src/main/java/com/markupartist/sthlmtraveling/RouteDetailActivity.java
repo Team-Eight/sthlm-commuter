@@ -202,14 +202,13 @@ public class RouteDetailActivity extends BaseListActivity {
         }
 
 
-
+        //Support for tabs written by Oskar Hahr and Didrik
         mTabLayout = (this.findViewById(R.id.rDetails_Tab));
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 changeTabColor(tab,true);
                 swapTabDetails();
-
             }
 
             @Override
@@ -457,6 +456,8 @@ public class RouteDetailActivity extends BaseListActivity {
             expectedDepartureTimeView.setVisibility(View.GONE);
         }
     }
+
+    /** Practically the same function as updatefooterview but this one is called when a new tab is selected**/
 
     void updateFooterView(final LegViewModel legViewModel) {
             TextView departureTimeView = (TextView) mFooterView.findViewById(R.id.trip_departure_time);
@@ -876,6 +877,11 @@ public class RouteDetailActivity extends BaseListActivity {
             return description;
         }
     }
+    /** TabDetails - Made by Didrik
+     * Acts as object wrapper and gathers the different data objects and makes
+     * them more manageable.
+     *
+     */
 
     private class TabDetails{
         public JourneyQuery journeyQ;
@@ -897,9 +903,11 @@ public class RouteDetailActivity extends BaseListActivity {
         }
 
     }
+    /** Written by Oskar Hahr
+     * Rotates the tabs and displays the new route as the first tab
+     * **/
+
     private void swapTabDetails(){
-        //Rotates the tabs and displays the new route as the first tab
-        //Oskar Hahr
 
         if(mTabDetails[1] == null)
             mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.tabClose).setVisibility(View.GONE);
@@ -952,6 +960,10 @@ public class RouteDetailActivity extends BaseListActivity {
         }
         updateTabText();
     }
+
+    /** Written by Oskar Hahr and Didrik
+     * This function removes the tab currently at the specified index and updates the view of the other tabs **/
+
     private void removeTab(int index){
         if(mTabLayout.getTabCount() > 1) {
             for (int i = index; i < mTabLayout.getTabCount() - 1; i++) {
@@ -974,6 +986,8 @@ public class RouteDetailActivity extends BaseListActivity {
         return mTabLayout.getSelectedTabPosition();
     }
 
+    /** Written by Oskar Hahr and Didrik
+     * Updates the text of the tabs when they are added and removed **/
     private void updateTabText(){
 
         for(int i = 0; i < mTabLayout.getTabCount(); i ++) {
@@ -990,6 +1004,8 @@ public class RouteDetailActivity extends BaseListActivity {
                     + dest));
         }
     }
+    /** Written by Oskar Hahr
+     * Changes the colour of the tabs when they are selected/unselected **/
     private void changeTabColor(TabLayout.Tab tab, boolean sel){
         if (sel)
             ((TextView)tab.getCustomView().findViewById(R.id.tabText)).setTextColor(getResources().getColor(R.color.accent));
