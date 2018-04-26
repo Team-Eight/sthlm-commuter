@@ -263,8 +263,8 @@ public class RouteDetailActivity extends BaseListActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
-                String shareBody = RouteDetailsToStringBody();
-                String shareSub = RouteDetailsToStringSubject();
+                String shareBody = routeDetailsToString()[1];
+                String shareSub = routeDetailsToString()[0];
                 myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(myIntent, "Share using"));
@@ -390,35 +390,98 @@ public class RouteDetailActivity extends BaseListActivity {
      * @author Jakob Berggren & Johan Edman
      * Share Trip - String builder
      * TODO: Reduce to one function with parameter.
+     * TODO: Refactor
      */
-    private String RouteDetailsToStringSubject() {
-        StringBuilder sb = new StringBuilder();
+    private String getRouteDetails(String item) {
         List<Leg> legs = mRoute.getLegs();
-        sb.append(legs.get(0).getFrom().getName()).append(" -> ");
-        sb.append(legs.get(legs.size() - 1).getTo().getName());
-        sb.append(" | ").append(legs.get(0).getStartTime().toString().substring(0, 11));
 
-        return sb.toString();
-    }
-
-    private String RouteDetailsToStringBody(){
-        StringBuilder sb = new StringBuilder();
-        List<Leg> legs = mRoute.getLegs();
-        sb.append(getString(R.string.from)).append(" ").append(legs.get(0).getFrom().getName()).append("\n");
-        sb.append(getString(R.string.to)).append(" ").append(legs.get(legs.size() - 1).getTo().getName()).append("\n");
-        sb.append(legs.get(0).getStartTime().toString().substring(0, 11)).append("\n\n");
-
-        for (Leg leg : legs) {
-            sb.append(leg.getStartTime().toString().substring(11, 16));
-            sb.append(" ").append(leg.getFrom().getName()).append("\n");
-            sb.append(leg.getRouteName().substring(0, 1).toUpperCase()).append(leg.getRouteName().substring(1)).append("\n");
-            sb.append(getString(R.string.to)).append(" ").append(leg.getHeadsing().getName()).append("\n");
-            sb.append(leg.getEndTime().toString().substring(11, 16)).append(" ").append(leg.getTo().getName()).append("\n\n");
+        switch (item) {
+            case "from":
+                String from = "";
+                for (int i = 0; i < legs.size(); i++) {
+                    if (!legs.get(i).getTravelMode().equals("foot")) {
+                        if (from.equals("")) {
+                            if (!legs.get(i).getFrom().getName().equals("MY_LOCATION")) {
+                                from = legs.get(i).getFrom().getName();
+                            }
+                        }
+                    }
+                }
+                return from;
+            case "to": {
+                String to = "";
+                for (int i = legs.size() - 1; i >= 0; i--) {
+                    if (!legs.get(i).getTravelMode().equals("foot")) {
+                        if (to.equals("")) {
+                            if (!legs.get(i).getTo().getName().equals("MY_LOCATION")) {
+                                to = legs.get(i).getTo().getName();
+                            }
+                        }
+                    }
+                }
+                return to;
+            }
+            default:
+                return "";
         }
 
-        return sb.toString();
     }
 
+    private String[] routeDetailsToString() {
+        String[] routeDetails = new String[2];
+        List<Leg> legs = mRoute.getLegs();
+        // Index 0 contains Subject
+        // Index 1 Contains Body
+
+        String sub = getRouteDetails("from") +
+                " -> " +
+                getRouteDetails("to") +
+                " | " +
+                legs.get(0).getStartTime().toString().substring(0, 11);
+
+        routeDetails[0] = sub;
+
+        StringBuilder body = new StringBuilder();
+        body.append(getString(R.string.from)).append(" ");
+        body.append(getRouteDetails("from")).append("\n");
+        body.append(getString(R.string.to)).append(" ");
+        body.append(getRouteDetails("to")).append("\n");
+        body.append(legs.get(0).getStartTime().toString().substring(0, 11)).append("\n\n");
+
+        for (Leg leg : legs) {
+            if (!leg.getTravelMode().equals("foot")) {
+                boolean useRT = false;
+
+                if (leg.getStartTimeRt() != null || leg.getEndTimeRt() != null) {
+                    useRT = (leg.getStartTimeRt().after(leg.getStartTime()) || leg.getEndTimeRt().after(leg.getEndTime()));
+                }
+
+                if (useRT) {
+                    body.append("(").append(leg.getStartTime().toString().substring(11, 16)).append(") ");
+                    body.append(leg.getStartTimeRt().toString().substring(11, 16));
+                } else {
+                    body.append(leg.getStartTime().toString().substring(11, 16));
+                }
+
+                body.append(" ").append(leg.getFrom().getName()).append("\n");
+                body.append(leg.getRouteName().substring(0, 1).toUpperCase()).append(leg.getRouteName().substring(1)).append("\n");
+                body.append(getString(R.string.to)).append(" ").append(leg.getHeadsing().getName()).append("\n");
+
+                if (useRT) {
+                    body.append("(").append(leg.getEndTime().toString().substring(11, 16)).append(") ");
+                    body.append(leg.getEndTimeRt().toString().substring(11, 16));
+                } else {
+                    body.append(leg.getEndTime().toString().substring(11, 16));
+                }
+
+                body.append(" ").append(leg.getTo().getName());
+                body.append("\n\n");
+            }
+        }
+
+        routeDetails[1] = body.toString();
+        return routeDetails;
+    }
 
     private void tripTimeDestinationUpdater(){
         BidiFormatter bidiFormatter = BidiFormatter.getInstance(Locale.getDefault());
