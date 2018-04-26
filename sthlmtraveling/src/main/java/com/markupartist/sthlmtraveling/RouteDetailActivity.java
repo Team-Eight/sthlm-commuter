@@ -979,10 +979,8 @@ public class RouteDetailActivity extends BaseListActivity {
         for(int i = 0; i < mTabLayout.getTabCount(); i ++) {
 
             CharSequence time = DateTimeUtil.formatDetailedDuration(getResources(), mTabDetails[i].routeDetail.getDuration() * 1000);
-            //String [] timedest = mTabDetails[i].timeString.split("(?= to )");
             CharSequence dest = getLocationName(mTabDetails[i].journeyQ.destination.asPlace()).toString();
 
-            //timedest[1] = getLocationName(mJourneyQuery.destination.asPlace()).toString();
             if(dest.length() > 17)
                 dest = dest.subSequence(0,16) + "...";
 
