@@ -379,7 +379,7 @@ public class PlaceSearchActivity extends BaseFragmentActivity implements
                                     getString(R.string.tap_your_start_point_on_map));
                             startActivityForResult(i, REQUEST_CODE_POINT_ON_MAP);
                             break;
-                        case 2:
+                        case 2: // Added Intent to handle search w. Contact - Johan Edman
                             i = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                             i.setType(ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_TYPE);
                             startActivityForResult(i, REQUEST_CODE_CONTACT);
@@ -450,6 +450,9 @@ public class PlaceSearchActivity extends BaseFragmentActivity implements
         finish();
     }
 
+    /**
+     *  Added case to handle Contact Search - Johan Edman
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
