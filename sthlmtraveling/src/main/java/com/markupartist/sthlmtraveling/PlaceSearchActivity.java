@@ -42,7 +42,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log; // AZZ REMOVE UPON DEVCOMPLETION
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
