@@ -417,7 +417,7 @@ public class DeviationsActivity extends BaseListActivity {
         for(Deviation deviation:mAllDeviations){
             for(String word:words){
                 boolean checkA = deviation.getHeader().toLowerCase().contains(word);
-                boolean checkB = deviation.getDetails().toString().toLowerCase().contains(word);
+                boolean checkB = deviation.getDetails().toLowerCase().contains(word);
                 boolean checkC = deviation.getScope().toLowerCase().contains(word);
                 if(!(checkA||checkB||checkC)){
                     match = false;
