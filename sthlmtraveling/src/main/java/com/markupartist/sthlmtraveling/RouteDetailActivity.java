@@ -1053,7 +1053,6 @@ public class RouteDetailActivity extends BaseListActivity {
             mTabDetails[0] = new TabDetails(mJourneyQuery, mSubTripAdapter, timeDestinationString(), mRoute);
         }
 
-
         for (int i = 0; i < TAB_CAP; i++) {
             if (mTabDetails[i] == null)
                 break;

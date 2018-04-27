@@ -947,30 +947,22 @@ public class RoutesActivity extends BaseListActivity implements
 
         //update search time when switching tab
         mTimeAndDate.setText(buildDateTimeString());
-
+        fetchRouteAlternatives(mJourneyQuery);
         //update alternative route journey-time when switching  tab
         if(mRouteAlternativesView != null) {
             TextView footDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_foot_description);
             TextView bikeDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_bike_description);
             TextView carDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_car_description);
-            for (Route route : selectedTab().plan.getRoutes()) {
-                switch (route.getMode()) {
-                    case "foot":
-                        footDurationText.setText(DateTimeUtil.formatDetailedDuration(getResources(),
-                                route.getDuration() * 1000));
-                        break;
-                    case "bike":
-                        bikeDurationText.setText(DateTimeUtil.formatDetailedDuration(getResources(),
-                                route.getDuration() * 1000));
-                        break;
-                    case "car":
-                        carDurationText.setText(DateTimeUtil.formatDetailedDuration(getResources(),
-                                route.getDuration() * 1000));
-                        break;
-                }
+
+            if (selectedTab().plan == null) {
+                alternativeRouteIcons(false);
+            } else {
+                alternativeRouteIcons(true);
             }
         }
     }
+
+
 
     /** selectedTab - Made by Jakob & Didrik
      * Returns the current tab
@@ -1293,6 +1285,33 @@ public class RoutesActivity extends BaseListActivity implements
                     + destination));
         }
     }
+          
+    private void alternativeRouteIcons(boolean show){
+        TextView footDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_foot_description);
+        TextView bikeDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_bike_description);
+        TextView carDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_car_description);
+        ImageView footIcon = (ImageView) mRouteAlternativesView.findViewById(R.id.route_foot_icon);
+        ImageView bikeIcon = (ImageView) mRouteAlternativesView.findViewById(R.id.route_bike_icon);
+        ImageView carIcon = (ImageView) mRouteAlternativesView.findViewById(R.id.route_car_icon);
+        if(show){
+            footDurationText.setVisibility(View.VISIBLE);
+            footIcon.setVisibility(View.VISIBLE);
+            bikeDurationText.setVisibility(View.VISIBLE);
+            bikeIcon.setVisibility(View.VISIBLE);
+            carDurationText.setVisibility(View.VISIBLE);
+            carIcon.setVisibility(View.VISIBLE);
+        }
+        else{
+            footDurationText.setVisibility(View.GONE);
+            footIcon.setVisibility(View.GONE);
+            bikeDurationText.setVisibility(View.GONE);
+            bikeIcon.setVisibility(View.GONE);
+            carDurationText.setVisibility(View.GONE);
+            carIcon.setVisibility(View.GONE);
+        }
+
+    }
+
     private static class RoutesAdapter extends BaseAdapter {
 
         public static final int TYPE_GET_EARLIER = 0;
@@ -1409,6 +1428,8 @@ public class RoutesActivity extends BaseListActivity implements
             }
             return convertView;
         }
+
+
 
         View createViewForRoute(int position, View convertView, ViewGroup parent) {
             RouteViewHolder holder;
