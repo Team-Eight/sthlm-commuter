@@ -1285,7 +1285,7 @@ public class RoutesActivity extends BaseListActivity implements
                     + destination));
         }
     }
-
+          
     private void alternativeRouteIcons(boolean show){
         TextView footDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_foot_description);
         TextView bikeDurationText = (TextView) mRouteAlternativesView.findViewById(R.id.route_bike_description);
