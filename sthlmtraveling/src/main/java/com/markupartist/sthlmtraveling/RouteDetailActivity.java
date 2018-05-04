@@ -162,9 +162,9 @@ public class RouteDetailActivity extends BaseListActivity {
                 bidiFormatter.unicodeWrap(String
                         .valueOf(DateTimeUtil.formatDetailedDuration(getResources(), mRoute.getDuration() * 1000))),
                 bidiFormatter.unicodeWrap(String.valueOf(getLocationName(mJourneyQuery.destination.asPlace()))));
-        timeView.setText(timeStr);
+        mTimeView.setText(timeStr);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            timeView.setTextDirection(View.TEXT_DIRECTION_ANY_RTL);
+            mTimeView.setTextDirection(View.TEXT_DIRECTION_ANY_RTL);
         }
         if (mRoute.canBuyTicket()) {
 
@@ -181,6 +181,7 @@ public class RouteDetailActivity extends BaseListActivity {
 
             TextView zoneView = (TextView) headerView.findViewById(R.id.route_zones);
             zoneView.setText(mRoute.getFare().getZones());
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             mTimeView.setTextDirection(View.TEXT_DIRECTION_ANY_RTL);
@@ -997,7 +998,7 @@ public class RouteDetailActivity extends BaseListActivity {
             return description;
         }
     }
-}
+
     /** TabDetails - Made by Didrik Axelsson
      * Acts as object wrapper and gathers the different data objects and makes
      * them more manageable.
